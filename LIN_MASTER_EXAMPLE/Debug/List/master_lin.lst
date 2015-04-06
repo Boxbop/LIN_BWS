@@ -1,0 +1,1781 @@
+###############################################################################
+#
+# IAR C/C++ Compiler V6.50.1.797 for Atmel AVR            06/Apr/2015  14:39:43
+# Copyright 1996-2014 IAR Systems AB.
+# Standalone license - IAR Embedded Workbench 4K Kickstart edition for Atmel AVR 6.50
+#
+#    Source file  =  
+#        C:\Users\lisa\Desktop\LIN_BWS\LIB_MCU\LIN_UART\master_lin.c
+#    Command line =  
+#        C:\Users\lisa\Desktop\LIN_BWS\LIB_MCU\LIN_UART\master_lin.c
+#        --cpu=can128 -ms -o
+#        C:\Users\lisa\Desktop\LIN_BWS\LIN_MASTER_EXAMPLE\Debug\Obj\ -lC
+#        C:\Users\lisa\Desktop\LIN_BWS\LIN_MASTER_EXAMPLE\Debug\List\
+#        --diag_suppress Pa082 -y --root_variables --no_cse --no_inline
+#        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+#        -DENABLE_BIT_DEFINITIONS -e -I
+#        C:\Users\lisa\Desktop\LIN_BWS\LIN_MASTER_EXAMPLE\..\ -I
+#        C:\Users\lisa\Desktop\LIN_BWS\LIN_MASTER_EXAMPLE\..\..\ -I
+#        C:\Users\lisa\Desktop\LIN_BWS\LIN_MASTER_EXAMPLE\..\..\..\ -I
+#        C:\Users\lisa\Desktop\LIN_BWS\LIN_MASTER_EXAMPLE\..\ -I
+#        C:\Users\lisa\Desktop\LIN_BWS\LIN_MASTER_EXAMPLE\ --eeprom_size 4096
+#        --clib -Ohz
+#    List file    =  
+#        C:\Users\lisa\Desktop\LIN_BWS\LIN_MASTER_EXAMPLE\Debug\List\master_lin.lst
+#    Object file  =  
+#        C:\Users\lisa\Desktop\LIN_BWS\LIN_MASTER_EXAMPLE\Debug\Obj\master_lin.r90
+#
+###############################################################################
+
+C:\Users\lisa\Desktop\LIN_BWS\LIB_MCU\LIN_UART\master_lin.c
+      1          /*
+      2          **
+      3          ****************************************************************************
+      4          **
+      5          **
+      6          **             Copyright (c) 2004/2005 - Atmel Corporation
+      7          **             Proprietary Information
+      8          **
+      9          ** Project    	: AVR LIN MASTER EXAMPLE
+     10          ** Module     	: MASTER_LIN.C
+     11          ** Description	: LIN v1.3 MASTER SCHEDULER
+     12          ** Target   	: ATMEGA48/88/168 and AT90CAN128
+     13          ** Compiler    	: IAR Embedded Workbench 4.1
+     14          **
+     15          **
+     16          ** Version :     Date:         Author:      Comment:
+     17          **    1.0        5.1.2005      E.G.         Creation
+     18          **
+     19          **
+     20          ** LICENSE -
+     21          **
+     22          ** ATMEL - 2004-2005
+     23          ** All software programs are provided 'as is' without warranty of any kind:
+     24          ** Atmel does not state the suitability of the provided materials for any
+     25          ** purpose. Atmel hereby disclaim all warranties and conditions with regard
+     26          ** to the provided software, including all implied warranties, fitness for
+     27          ** a particular purpose, title and non-infringement.In no event will Atmel
+     28          ** be liable for any indirect or consequential damages or any damages
+     29          ** whatsoever resulting from the usage of the software program.
+     30          ****************************************************************************
+     31          **
+     32          */
+     33          
+     34          /* Define MASTER_LIN_C if not already  defined */
+     35          #define MASTER_LIN_C
+     36          
+     37          #include "lib_mcu/lin_uart/master_lin.h"
+
+   \                                 In  segment ABSOLUTE, at 0xfa, root
+   \   union <unnamed> volatile __io _A_CANMSG
+   \                     _A_CANMSG:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xf8, root
+   \   union <unnamed> volatile __io _A_CANSTM
+   \                     _A_CANSTM:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0xf7, root
+   \   union <unnamed> volatile __io _A_CANIDM1
+   \                     _A_CANIDM1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xf6, root
+   \   union <unnamed> volatile __io _A_CANIDM2
+   \                     _A_CANIDM2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xf5, root
+   \   union <unnamed> volatile __io _A_CANIDM3
+   \                     _A_CANIDM3:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xf4, root
+   \   union <unnamed> volatile __io _A_CANIDM4
+   \                     _A_CANIDM4:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xf3, root
+   \   union <unnamed> volatile __io _A_CANIDT1
+   \                     _A_CANIDT1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xf2, root
+   \   union <unnamed> volatile __io _A_CANIDT2
+   \                     _A_CANIDT2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xf1, root
+   \   union <unnamed> volatile __io _A_CANIDT3
+   \                     _A_CANIDT3:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xf0, root
+   \   union <unnamed> volatile __io _A_CANIDT4
+   \                     _A_CANIDT4:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xef, root
+   \   union <unnamed> volatile __io _A_CANCDMOB
+   \                     _A_CANCDMOB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xee, root
+   \   union <unnamed> volatile __io _A_CANSTMOB
+   \                     _A_CANSTMOB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xed, root
+   \   union <unnamed> volatile __io _A_CANPAGE
+   \                     _A_CANPAGE:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xec, root
+   \   union <unnamed> volatile __io _A_CANHPMOB
+   \                     _A_CANHPMOB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xeb, root
+   \   union <unnamed> volatile __io _A_CANREC
+   \                     _A_CANREC:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xea, root
+   \   union <unnamed> volatile __io _A_CANTEC
+   \                     _A_CANTEC:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xe8, root
+   \   union <unnamed> volatile __io _A_CANTTC
+   \                     _A_CANTTC:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0xe6, root
+   \   union <unnamed> volatile __io _A_CANTIM
+   \                     _A_CANTIM:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0xe5, root
+   \   union <unnamed> volatile __io _A_CANTCON
+   \                     _A_CANTCON:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xe4, root
+   \   union <unnamed> volatile __io _A_CANBT3
+   \                     _A_CANBT3:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xe3, root
+   \   union <unnamed> volatile __io _A_CANBT2
+   \                     _A_CANBT2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xe2, root
+   \   union <unnamed> volatile __io _A_CANBT1
+   \                     _A_CANBT1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xe1, root
+   \   union <unnamed> volatile __io _A_CANSIT1
+   \                     _A_CANSIT1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xe0, root
+   \   union <unnamed> volatile __io _A_CANSIT2
+   \                     _A_CANSIT2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xdf, root
+   \   union <unnamed> volatile __io _A_CANIE1
+   \                     _A_CANIE1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xde, root
+   \   union <unnamed> volatile __io _A_CANIE2
+   \                     _A_CANIE2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xdd, root
+   \   union <unnamed> volatile __io _A_CANEN1
+   \                     _A_CANEN1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xdc, root
+   \   union <unnamed> volatile __io _A_CANEN2
+   \                     _A_CANEN2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xdb, root
+   \   union <unnamed> volatile __io _A_CANGIE
+   \                     _A_CANGIE:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xda, root
+   \   union <unnamed> volatile __io _A_CANGIT
+   \                     _A_CANGIT:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xd9, root
+   \   union <unnamed> volatile __io _A_CANGSTA
+   \                     _A_CANGSTA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xd8, root
+   \   union <unnamed> volatile __io _A_CANGCON
+   \                     _A_CANGCON:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xce, root
+   \   union <unnamed> volatile __io _A_UDR1
+   \                     _A_UDR1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xcc, root
+   \   union <unnamed> volatile __io _A_UBRR1
+   \                     _A_UBRR1:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0xca, root
+   \   union <unnamed> volatile __io _A_UCSR1C
+   \                     _A_UCSR1C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xc9, root
+   \   union <unnamed> volatile __io _A_UCSR1B
+   \                     _A_UCSR1B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xc8, root
+   \   union <unnamed> volatile __io _A_UCSR1A
+   \                     _A_UCSR1A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xc6, root
+   \   union <unnamed> volatile __io _A_UDR0
+   \                     _A_UDR0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xc4, root
+   \   union <unnamed> volatile __io _A_UBRR0
+   \                     _A_UBRR0:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0xc2, root
+   \   union <unnamed> volatile __io _A_UCSR0C
+   \                     _A_UCSR0C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xc1, root
+   \   union <unnamed> volatile __io _A_UCSR0B
+   \                     _A_UCSR0B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xc0, root
+   \   union <unnamed> volatile __io _A_UCSR0A
+   \                     _A_UCSR0A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xbc, root
+   \   union <unnamed> volatile __io _A_TWCR
+   \                     _A_TWCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xbb, root
+   \   union <unnamed> volatile __io _A_TWDR
+   \                     _A_TWDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xba, root
+   \   union <unnamed> volatile __io _A_TWAR
+   \                     _A_TWAR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xb9, root
+   \   union <unnamed> volatile __io _A_TWSR
+   \                     _A_TWSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xb8, root
+   \   union <unnamed> volatile __io _A_TWBR
+   \                     _A_TWBR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xb6, root
+   \   union <unnamed> volatile __io _A_ASSR
+   \                     _A_ASSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xb3, root
+   \   union <unnamed> volatile __io _A_OCR2A
+   \                     _A_OCR2A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xb2, root
+   \   union <unnamed> volatile __io _A_TCNT2
+   \                     _A_TCNT2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xb0, root
+   \   union <unnamed> volatile __io _A_TCCR2A
+   \                     _A_TCCR2A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x9c, root
+   \   union <unnamed> volatile __io _A_OCR3C
+   \                     _A_OCR3C:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x9a, root
+   \   union <unnamed> volatile __io _A_OCR3B
+   \                     _A_OCR3B:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x98, root
+   \   union <unnamed> volatile __io _A_OCR3A
+   \                     _A_OCR3A:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x96, root
+   \   union <unnamed> volatile __io _A_ICR3
+   \                     _A_ICR3:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x94, root
+   \   union <unnamed> volatile __io _A_TCNT3
+   \                     _A_TCNT3:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x92, root
+   \   union <unnamed> volatile __io _A_TCCR3C
+   \                     _A_TCCR3C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x91, root
+   \   union <unnamed> volatile __io _A_TCCR3B
+   \                     _A_TCCR3B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x90, root
+   \   union <unnamed> volatile __io _A_TCCR3A
+   \                     _A_TCCR3A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x8c, root
+   \   union <unnamed> volatile __io _A_OCR1C
+   \                     _A_OCR1C:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x8a, root
+   \   union <unnamed> volatile __io _A_OCR1B
+   \                     _A_OCR1B:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x88, root
+   \   union <unnamed> volatile __io _A_OCR1A
+   \                     _A_OCR1A:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x86, root
+   \   union <unnamed> volatile __io _A_ICR1
+   \                     _A_ICR1:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x84, root
+   \   union <unnamed> volatile __io _A_TCNT1
+   \                     _A_TCNT1:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x82, root
+   \   union <unnamed> volatile __io _A_TCCR1C
+   \                     _A_TCCR1C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x81, root
+   \   union <unnamed> volatile __io _A_TCCR1B
+   \                     _A_TCCR1B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x80, root
+   \   union <unnamed> volatile __io _A_TCCR1A
+   \                     _A_TCCR1A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x7f, root
+   \   union <unnamed> volatile __io _A_DIDR1
+   \                     _A_DIDR1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x7e, root
+   \   union <unnamed> volatile __io _A_DIDR0
+   \                     _A_DIDR0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x7c, root
+   \   union <unnamed> volatile __io _A_ADMUX
+   \                     _A_ADMUX:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x7b, root
+   \   union <unnamed> volatile __io _A_ADCSRB
+   \                     _A_ADCSRB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x7a, root
+   \   union <unnamed> volatile __io _A_ADCSRA
+   \                     _A_ADCSRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x78, root
+   \   union <unnamed> volatile __io _A_ADC
+   \                     _A_ADC:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x75, root
+   \   union <unnamed> volatile __io _A_XMCRB
+   \                     _A_XMCRB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x74, root
+   \   union <unnamed> volatile __io _A_XMCRA
+   \                     _A_XMCRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x71, root
+   \   union <unnamed> volatile __io _A_TIMSK3
+   \                     _A_TIMSK3:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x70, root
+   \   union <unnamed> volatile __io _A_TIMSK2
+   \                     _A_TIMSK2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6f, root
+   \   union <unnamed> volatile __io _A_TIMSK1
+   \                     _A_TIMSK1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6e, root
+   \   union <unnamed> volatile __io _A_TIMSK0
+   \                     _A_TIMSK0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6a, root
+   \   union <unnamed> volatile __io _A_EICRB
+   \                     _A_EICRB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x69, root
+   \   union <unnamed> volatile __io _A_EICRA
+   \                     _A_EICRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x66, root
+   \   union <unnamed> volatile __io _A_OSCCAL
+   \                     _A_OSCCAL:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x61, root
+   \   union <unnamed> volatile __io _A_CLKPR
+   \                     _A_CLKPR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x60, root
+   \   union <unnamed> volatile __io _A_WDTCR
+   \                     _A_WDTCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x5f, root
+   \   union <unnamed> volatile __io _A_SREG
+   \                     _A_SREG:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x5d, root
+   \   union <unnamed> volatile __io _A_SP
+   \                     _A_SP:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x5b, root
+   \   union <unnamed> volatile __io _A_RAMPZ
+   \                     _A_RAMPZ:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x57, root
+   \   union <unnamed> volatile __io _A_SPMCSR
+   \                     _A_SPMCSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x55, root
+   \   union <unnamed> volatile __io _A_MCUCR
+   \                     _A_MCUCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x54, root
+   \   union <unnamed> volatile __io _A_MCUSR
+   \                     _A_MCUSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x53, root
+   \   union <unnamed> volatile __io _A_SMCR
+   \                     _A_SMCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x51, root
+   \   union <unnamed> volatile __io _A_OCDR
+   \                     _A_OCDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x50, root
+   \   union <unnamed> volatile __io _A_ACSR
+   \                     _A_ACSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x4e, root
+   \   union <unnamed> volatile __io _A_SPDR
+   \                     _A_SPDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x4d, root
+   \   union <unnamed> volatile __io _A_SPSR
+   \                     _A_SPSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x4c, root
+   \   union <unnamed> volatile __io _A_SPCR
+   \                     _A_SPCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x4b, root
+   \   union <unnamed> volatile __io _A_GPIOR2
+   \                     _A_GPIOR2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x4a, root
+   \   union <unnamed> volatile __io _A_GPIOR1
+   \                     _A_GPIOR1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x47, root
+   \   union <unnamed> volatile __io _A_OCR0A
+   \                     _A_OCR0A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x46, root
+   \   union <unnamed> volatile __io _A_TCNT0
+   \                     _A_TCNT0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x44, root
+   \   union <unnamed> volatile __io _A_TCCR0A
+   \                     _A_TCCR0A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x43, root
+   \   union <unnamed> volatile __io _A_GTCCR
+   \                     _A_GTCCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x41, root
+   \   union <unnamed> volatile __io _A_EEAR
+   \                     _A_EEAR:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x40, root
+   \   union <unnamed> volatile __io _A_EEDR
+   \                     _A_EEDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3f, root
+   \   union <unnamed> volatile __io _A_EECR
+   \                     _A_EECR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3e, root
+   \   union <unnamed> volatile __io _A_GPIOR0
+   \                     _A_GPIOR0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3d, root
+   \   union <unnamed> volatile __io _A_EIMSK
+   \                     _A_EIMSK:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3c, root
+   \   union <unnamed> volatile __io _A_EIFR
+   \                     _A_EIFR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x38, root
+   \   union <unnamed> volatile __io _A_TIFR3
+   \                     _A_TIFR3:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x37, root
+   \   union <unnamed> volatile __io _A_TIFR2
+   \                     _A_TIFR2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x36, root
+   \   union <unnamed> volatile __io _A_TIFR1
+   \                     _A_TIFR1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x35, root
+   \   union <unnamed> volatile __io _A_TIFR0
+   \                     _A_TIFR0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x34, root
+   \   union <unnamed> volatile __io _A_PORTG
+   \                     _A_PORTG:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x33, root
+   \   union <unnamed> volatile __io _A_DDRG
+   \                     _A_DDRG:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x32, root
+   \   union <unnamed> volatile __io _A_PING
+   \                     _A_PING:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x31, root
+   \   union <unnamed> volatile __io _A_PORTF
+   \                     _A_PORTF:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x30, root
+   \   union <unnamed> volatile __io _A_DDRF
+   \                     _A_DDRF:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2f, root
+   \   union <unnamed> volatile __io _A_PINF
+   \                     _A_PINF:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2e, root
+   \   union <unnamed> volatile __io _A_PORTE
+   \                     _A_PORTE:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2d, root
+   \   union <unnamed> volatile __io _A_DDRE
+   \                     _A_DDRE:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2c, root
+   \   union <unnamed> volatile __io _A_PINE
+   \                     _A_PINE:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2b, root
+   \   union <unnamed> volatile __io _A_PORTD
+   \                     _A_PORTD:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2a, root
+   \   union <unnamed> volatile __io _A_DDRD
+   \                     _A_DDRD:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x29, root
+   \   union <unnamed> volatile __io _A_PIND
+   \                     _A_PIND:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x28, root
+   \   union <unnamed> volatile __io _A_PORTC
+   \                     _A_PORTC:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x27, root
+   \   union <unnamed> volatile __io _A_DDRC
+   \                     _A_DDRC:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x26, root
+   \   union <unnamed> volatile __io _A_PINC
+   \                     _A_PINC:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x25, root
+   \   union <unnamed> volatile __io _A_PORTB
+   \                     _A_PORTB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x24, root
+   \   union <unnamed> volatile __io _A_DDRB
+   \                     _A_DDRB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x23, root
+   \   union <unnamed> volatile __io _A_PINB
+   \                     _A_PINB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x22, root
+   \   union <unnamed> volatile __io _A_PORTA
+   \                     _A_PORTA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x21, root
+   \   union <unnamed> volatile __io _A_DDRA
+   \                     _A_DDRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x20, root
+   \   union <unnamed> volatile __io _A_PINA
+   \                     _A_PINA:
+   \   00000000                      DS8 1
+     38          
+
+   \                                 In  segment NEAR_Z, align 1, keep-with-next, root
+   \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
+     39          t_schedule my_schedule ; //current schedule
+   \                     my_schedule:
+   \   00000000                      DS8 41
+
+   \                                 In  segment NEAR_Z, align 1, keep-with-next, root
+   \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
+     40          lin_status_t lin_status; //lin controller status
+   \                     lin_status:
+   \   00000000                      DS8 1
+
+   \                                 In  segment NEAR_Z, align 1, keep-with-next, root
+   \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
+     41          st_lin_t msg_lin;        //msg description objetc
+   \                     msg_lin:
+   \   00000000                      DS8 3
+
+   \                                 In  segment NEAR_Z, align 1, keep-with-next, root
+   \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
+     42          st_cmd_lin_t cmd_lin;    //lin command object
+   \                     cmd_lin:
+   \   00000000                      DS8 4
+
+   \                                 In  segment NEAR_Z, align 1, keep-with-next, root
+   \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
+     43          U8 tab_data[8];          //lin data buffer
+   \                     tab_data:
+   \   00000000                      DS8 8
+
+   \                                 In  segment NEAR_Z, align 1, keep-with-next, root
+   \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
+     44          static U16 LinTxCtr   ;
+   \                     LinTxCtr:
+   \   00000000                      DS8 2
+
+   \                                 In  segment NEAR_Z, align 1, keep-with-next, root
+   \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
+     45          U8 Frame_index;
+   \                     Frame_index:
+   \   00000000                      DS8 1
+     46          
+     47          #ifdef _SLEEP_TIMOUT_DETECTION
+
+   \                                 In  segment NEAR_Z, align 1, keep-with-next, root
+   \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
+     48          U8 LINSleepFlag;
+   \                     LINSleepFlag:
+   \   00000000                      DS8 1
+
+   \                                 In  segment NEAR_Z, align 1, keep-with-next, root
+   \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
+     49          U8 lin_sleep_message_request;
+   \                     lin_sleep_message_request:
+   \   00000000                      DS8 1
+     50          #endif
+     51          
+     52          #ifdef _COUNTING_ERRORS_ENABLE
+
+   \                                 In  segment NEAR_Z, align 1, keep-with-next, root
+   \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
+     53          U16 countCERR;  // checksum error counter
+   \                     countCERR:
+   \   00000000                      DS8 2
+
+   \                                 In  segment NEAR_Z, align 1, keep-with-next, root
+   \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
+     54          U16 countRERR;  // slave response error (master only)
+   \                     countRERR:
+   \   00000000                      DS8 2
+
+   \                                 In  segment NEAR_Z, align 1, keep-with-next, root
+   \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
+     55          U16 countBERR;  // bit error counter
+   \                     countBERR:
+   \   00000000                      DS8 2
+
+   \                                 In  segment NEAR_Z, align 1, keep-with-next, root
+   \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
+     56          U16 countSERR;  // synchro error counter
+   \                     countSERR:
+   \   00000000                      DS8 2
+
+   \                                 In  segment NEAR_Z, align 1, keep-with-next, root
+   \   00000000                      REQUIRE `?<Segment init: NEAR_Z>`
+     57          U16 countPERR;  // parity error counter
+   \                     countPERR:
+   \   00000000                      DS8 2
+     58          #endif
+     59          
+     60          //------------------------------------------------------------------------------
+     61          //
+     62          // Description: integer to ascii conversion function (usefull for display !)
+     63          // Input Parameters:  character (8 bits) to convert
+     64          // Output  Parameters: corresponding ASCII byte
+     65          // ------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     66          char int2hex(unsigned char integer) {
+   \                     int2hex:
+     67            if(integer < 10)  {
+   \   00000000   300A               CPI     R16, 10
+   \   00000002   F410               BRCC    ??int2hex_0
+     68              return integer+ASCII_NUM_OFFSET;
+   \   00000004   5D00               SUBI    R16, 208
+   \   00000006   9508               RET
+     69            }else{
+     70              return integer+55;
+   \                     ??int2hex_0:
+   \   00000008   5C09               SUBI    R16, 201
+   \   0000000A   9508               RET
+     71            }
+     72          }
+     73          
+     74          // ------------------------------------------------------------------------------
+     75          // Description:        Start LIN timer (for tick function)
+     76          // Input Parameters:   none
+     77          // Output  Parameters: none
+     78          //------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     79          void LIN_TIMER_init (void){
+   \                     LIN_TIMER_init:
+     80            TIMSK1  |= 1 << TOIE1;    // Int T Overflow Enabled
+   \   00000000   9100006F           LDS     R16, 111
+   \   00000004   6001               ORI     R16, 0x01
+   \   00000006   9300006F           STS     111, R16
+     81            TCCR1A  = 0x00;           // Counter Mode - Normal
+   \   0000000A   E000               LDI     R16, 0
+   \   0000000C   9300....           STS     _A_TCCR1A, R16
+     82            TCCR1B  = 0x01;           // Set clock source to internal
+   \   00000010   E001               LDI     R16, 1
+   \   00000012   9300....           STS     _A_TCCR1B, R16
+     83          
+     84            // Set Timer Value for a Tbit overflow
+     85            TCNT1H = _8MHZ_TCNT1H;
+   \   00000016   EF0E               LDI     R16, 254
+   \   00000018   93000085           STS     133, R16
+     86            TCNT1L = _8MHZ_TCNT1L;
+   \   0000001C   E600               LDI     R16, 96
+   \   0000001E   9300....           STS     _A_TCNT1, R16
+     87          }
+   \   00000022   9508               RET
+   \   00000024                      REQUIRE _A_TIMSK1
+   \   00000024                      REQUIRE _A_TCCR1A
+   \   00000024                      REQUIRE _A_TCCR1B
+   \   00000024                      REQUIRE _A_TCNT1
+     88          
+     89          //----------------------------------------------------------------------------//
+     90          // Description:	LIN ID to  DLC conversion
+     91          //
+     92          //----------------------------------------------------------------------------//
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     93          U8 id_to_dlc (U8 lin_id) {
+   \                     id_to_dlc:
+     94            U8 lin_dlc = (lin_id & 0x30) >>4; // extract dlc bits only from identifier
+   \   00000000   9502               SWAP    R16
+   \   00000002   7003               ANDI    R16, 0x03
+     95            if (lin_dlc < 2){
+   \   00000004   3002               CPI     R16, 2
+   \   00000006   F410               BRCC    ??id_to_dlc_0
+     96              lin_dlc = 2; //2 data bytes to be transferred
+   \   00000008   E002               LDI     R16, 2
+   \   0000000A   9508               RET
+     97            }else if (lin_dlc == 2){
+   \                     ??id_to_dlc_0:
+   \   0000000C   F411               BRNE    ??id_to_dlc_1
+     98              lin_dlc = 4;//4 data bytes to be transferred
+   \   0000000E   E004               LDI     R16, 4
+   \   00000010   9508               RET
+     99            }else{
+    100              lin_dlc = 8;//8 data bytes to be transferred
+   \                     ??id_to_dlc_1:
+   \   00000012   E008               LDI     R16, 8
+    101            }
+    102            return lin_dlc;
+   \   00000014   9508               RET
+    103          }
+    104          
+    105          // ------------------------------------------------------------------------------
+    106          // Description:  LIN ID Field initialisation.this function add dlc bytes into id field.
+    107          // Input Parameters:   id filed to be modified
+    108          // Output  Parameters:  modified id filed
+    109          // ------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    110          U8 ComputeIdField(U8 lin_id_wo_dlc,U8 dlc) {
+   \                     ComputeIdField:
+    111            U8    tmp_id;
+    112          
+    113            tmp_id= lin_id_wo_dlc & 0xCF; //clear dlc bits 5 and 4
+   \   00000000   7C0F               ANDI    R16, 0xCF
+    114            if(dlc == 2) {
+   \   00000002   3012               CPI     R17, 2
+   \   00000004   F411               BRNE    ??ComputeIdField_0
+    115              tmp_id |=   0x10 ; // 2 bytes to be transferred
+   \   00000006   6100               ORI     R16, 0x10
+   \   00000008   9508               RET
+    116            }else if(dlc== 4) {
+   \                     ??ComputeIdField_0:
+   \   0000000A   3014               CPI     R17, 4
+   \   0000000C   F411               BRNE    ??ComputeIdField_1
+    117              tmp_id |=   0x20 ; // 4 bytes to be transferred
+   \   0000000E   6200               ORI     R16, 0x20
+   \   00000010   9508               RET
+    118            }else if(dlc== 8) {
+   \                     ??ComputeIdField_1:
+   \   00000012   3018               CPI     R17, 8
+   \   00000014   F409               BRNE    ??ComputeIdField_2
+    119              tmp_id |=   0x30 ; // 8 bytes to be transferred
+   \   00000016   6300               ORI     R16, 0x30
+    120            }
+    121            return tmp_id;
+   \                     ??ComputeIdField_2:
+   \   00000018   9508               RET
+    122          }
+    123          
+    124          //------------------------------------------------------------------------------
+    125          //
+    126          // Description:  data are required before starting transmitting a new lin frame
+    127          // Input Parameters:   frame id , frame size (my_schedule stucture used )
+    128          // Output Parameters:  none
+    129          // 	
+    130          //----------------------------------------------------------------------------//
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    131          void DataRequest_Notification(U8 TransmitId,U8 TransmitSize){
+   \                     DataRequest_Notification:
+    132            U8 data_cnt;
+    133            t_schedule *   pt_schedule;
+    134          
+    135            pt_schedule = &my_schedule;
+    136            if (TransmitId != 0x3C) {
+   \   00000000   330C               CPI     R16, 60
+   \   00000002   E020               LDI     R18, 0
+   \   00000004   F0B9               BREQ    ??DataRequest_Notification_0
+    137              for (data_cnt = 0 ; data_cnt < TransmitSize; data_cnt++ )
+   \                     ??DataRequest_Notification_1:
+   \   00000006   1721               CP      R18, R17
+   \   00000008   F4F8               BRCC    ??DataRequest_Notification_2
+    138                tab_data[data_cnt] = pt_schedule->frame_message[Frame_index].frame_data[data_cnt];
+   \   0000000A   9130....           LDS     R19, Frame_index
+   \   0000000E   E048               LDI     R20, 8
+   \   00000010   9F34               MUL     R19, R20
+   \   00000012   ....               LDI     R30, LOW(my_schedule)
+   \   00000014   ....               LDI     R31, (my_schedule) >> 8
+   \   00000016   0DE0               ADD     R30, R0
+   \   00000018   1DF1               ADC     R31, R1
+   \   0000001A   8143               LDD     R20, Z+3
+   \   0000001C   8154               LDD     R21, Z+4
+   \   0000001E   E030               LDI     R19, 0
+   \   00000020   0F42               ADD     R20, R18
+   \   00000022   1F53               ADC     R21, R19
+   \   00000024   01FA               MOVW    R31:R30, R21:R20
+   \   00000026   8140               LD      R20, Z
+   \   00000028   01F9               MOVW    R31:R30, R19:R18
+   \   0000002A   ....               SUBI    R30, LOW((-(tab_data) & 0xFFFF))
+   \   0000002C   ....               SBCI    R31, (-(tab_data) & 0xFFFF) >> 8
+   \   0000002E   8340               ST      Z, R20
+   \   00000030   9523               INC     R18
+   \   00000032   CFE9               RJMP    ??DataRequest_Notification_1
+    139            }else{
+    140              for (data_cnt = 0 ; data_cnt < TransmitSize; data_cnt++ )
+   \                     ??DataRequest_Notification_0:
+   \   00000034   E000               LDI     R16, 0
+   \   00000036   C006               RJMP    ??DataRequest_Notification_3
+    141                tab_data[data_cnt] = 0; //init data for a sleep message frame
+   \                     ??DataRequest_Notification_4:
+   \   00000038   E0F0               LDI     R31, 0
+   \   0000003A   2FE2               MOV     R30, R18
+   \   0000003C   ....               SUBI    R30, LOW((-(tab_data) & 0xFFFF))
+   \   0000003E   ....               SBCI    R31, (-(tab_data) & 0xFFFF) >> 8
+   \   00000040   8300               ST      Z, R16
+   \   00000042   9523               INC     R18
+   \                     ??DataRequest_Notification_3:
+   \   00000044   1721               CP      R18, R17
+   \   00000046   F3C0               BRCS    ??DataRequest_Notification_4
+    142            }
+    143          }
+   \                     ??DataRequest_Notification_2:
+   \   00000048   9508               RET
+    144          
+    145          //----------------------------------------------------------------------------//
+    146          // Description:  DataReceived_Notification Once valid LIN data has been received,
+    147          //                they are copied into the assocaited application buffer (if any)
+    148          // Input Parameters:   received Id (4 LSB), Size (number of bytes)  (use also my_schedule stucture)
+    149          // Output  Parameters:  '1' if data buffer has changed , '0' otherwise  (my_schedule stucture used)
+    150          //
+    151          //----------------------------------------------------------------------------//
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    152          U8 DataReceived_Notification(U8 ReceivedId,U8 ReceivedSize) {
+   \                     DataReceived_Notification:
+   \   00000000   ........           CALL    ?PROLOGUE5_L09
+   \   00000004                      REQUIRE ?Register_R4_is_cg_reg
+   \   00000004   2F90               MOV     R25, R16
+   \   00000006   2E41               MOV     R4, R17
+    153            U8 i,u;
+    154            t_schedule * pt_schedule;
+    155            U8 data_has_changed_flag;
+    156            U8 CompResult;
+    157          
+    158            data_has_changed_flag = FALSE;
+    159            pt_schedule = &my_schedule;
+   \   00000008   ....               LDI     R26, LOW(my_schedule)
+   \   0000000A   ....               LDI     R27, (my_schedule) >> 8
+    160            if(ReceivedId != 0xc) {
+   \   0000000C   300C               CPI     R16, 12
+   \   0000000E   F409               BRNE    $+2+2
+   \   00000010   C04A               RJMP    ??DataReceived_Notification_0
+    161              for (i=0;i<pt_schedule->number_of_frame;i++) {
+   \   00000012   E080               LDI     R24, 0
+   \   00000014   C017               RJMP    ??DataReceived_Notification_1
+    162                if ((pt_schedule->frame_message[i].frame_type == 1) && ((ReceivedId & 0x0F) == pt_schedule->frame_message[i].frame_id)
+    163                    && (ReceivedSize == pt_schedule->frame_message[i].frame_size) )  {
+    164                      CompResult = CompDataBuffer(cmd_lin.pt_lin_msg->pt_data,pt_schedule->frame_message[i].frame_data,ReceivedSize);
+    165                      if(CompResult) {
+    166                        pt_schedule->frame_message[i].data_has_changed = CompResult;
+    167                        for (u=0;u<ReceivedSize;u++) {
+    168                          pt_schedule->frame_message[i].frame_data[u] = cmd_lin.pt_lin_msg->pt_data[u];
+   \                     ??DataReceived_Notification_2:
+   \   00000016   91E0....           LDS     R30, (cmd_lin + 2)
+   \   0000001A   91F0....           LDS     R31, (cmd_lin + 3)
+   \   0000001E   8101               LDD     R16, Z+1
+   \   00000020   8112               LDD     R17, Z+2
+   \   00000022   0F02               ADD     R16, R18
+   \   00000024   1F13               ADC     R17, R19
+   \   00000026   01F8               MOVW    R31:R30, R17:R16
+   \   00000028   8140               LD      R20, Z
+   \   0000002A   01FD               MOVW    R31:R30, R27:R26
+   \   0000002C   0DE0               ADD     R30, R0
+   \   0000002E   1DF1               ADC     R31, R1
+   \   00000030   8103               LDD     R16, Z+3
+   \   00000032   8114               LDD     R17, Z+4
+   \   00000034   0F02               ADD     R16, R18
+   \   00000036   1F13               ADC     R17, R19
+   \   00000038   01F8               MOVW    R31:R30, R17:R16
+   \   0000003A   8340               ST      Z, R20
+    169                        }
+   \   0000003C   9523               INC     R18
+   \                     ??DataReceived_Notification_3:
+   \   0000003E   1524               CP      R18, R4
+   \   00000040   F350               BRCS    ??DataReceived_Notification_2
+   \                     ??DataReceived_Notification_4:
+   \   00000042   9583               INC     R24
+   \                     ??DataReceived_Notification_1:
+   \   00000044   910C               LD      R16, X
+   \   00000046   1780               CP      R24, R16
+   \   00000048   F5D0               BRCC    ??DataReceived_Notification_5
+   \   0000004A   E008               LDI     R16, 8
+   \   0000004C   9F80               MUL     R24, R16
+   \   0000004E   01FD               MOVW    R31:R30, R27:R26
+   \   00000050   0DE0               ADD     R30, R0
+   \   00000052   1DF1               ADC     R31, R1
+   \   00000054   8105               LDD     R16, Z+5
+   \   00000056   3001               CPI     R16, 1
+   \   00000058   F7A1               BRNE    ??DataReceived_Notification_4
+   \   0000005A   2F09               MOV     R16, R25
+   \   0000005C   700F               ANDI    R16, 0x0F
+   \   0000005E   01FD               MOVW    R31:R30, R27:R26
+   \   00000060   0DE0               ADD     R30, R0
+   \   00000062   1DF1               ADC     R31, R1
+   \   00000064   8111               LDD     R17, Z+1
+   \   00000066   1701               CP      R16, R17
+   \   00000068   F761               BRNE    ??DataReceived_Notification_4
+   \   0000006A   01FD               MOVW    R31:R30, R27:R26
+   \   0000006C   0DE0               ADD     R30, R0
+   \   0000006E   1DF1               ADC     R31, R1
+   \   00000070   8102               LDD     R16, Z+2
+   \   00000072   1640               CP      R4, R16
+   \   00000074   F731               BRNE    ??DataReceived_Notification_4
+   \   00000076   2D44               MOV     R20, R4
+   \   00000078   01FD               MOVW    R31:R30, R27:R26
+   \   0000007A   0DE0               ADD     R30, R0
+   \   0000007C   1DF1               ADC     R31, R1
+   \   0000007E   8123               LDD     R18, Z+3
+   \   00000080   8134               LDD     R19, Z+4
+   \   00000082   91E0....           LDS     R30, (cmd_lin + 2)
+   \   00000086   91F0....           LDS     R31, (cmd_lin + 3)
+   \   0000008A   8101               LDD     R16, Z+1
+   \   0000008C   8112               LDD     R17, Z+2
+   \   0000008E   ....               RCALL   CompDataBuffer
+   \   00000090   2300               TST     R16
+   \   00000092   F2B9               BREQ    ??DataReceived_Notification_4
+   \   00000094   E018               LDI     R17, 8
+   \   00000096   9F81               MUL     R24, R17
+   \   00000098   01FD               MOVW    R31:R30, R27:R26
+   \   0000009A   0DE0               ADD     R30, R0
+   \   0000009C   1DF1               ADC     R31, R1
+   \   0000009E   8700               STD     Z+8, R16
+   \   000000A0   E020               LDI     R18, 0
+   \   000000A2   E030               LDI     R19, 0
+   \   000000A4   CFCC               RJMP    ??DataReceived_Notification_3
+    170                      } //if data has changed
+    171                    } //if match
+    172              } //for frame
+    173            } else if (ReceivedId == 0x0C) { //check if sleep command received ?
+    174          #ifdef _SLEEP_TIMOUT_DETECTION
+    175              if (cmd_lin.pt_lin_msg->pt_data[0] == 0) {
+   \                     ??DataReceived_Notification_0:
+   \   000000A6   91E0....           LDS     R30, (cmd_lin + 2)
+   \   000000AA   91F0....           LDS     R31, (cmd_lin + 3)
+   \   000000AE   81A1               LDD     R26, Z+1
+   \   000000B0   81B2               LDD     R27, Z+2
+   \   000000B2   910C               LD      R16, X
+   \   000000B4   2300               TST     R16
+   \   000000B6   F419               BRNE    ??DataReceived_Notification_5
+    176                LINSleepFlag =  1 ;
+   \   000000B8   E001               LDI     R16, 1
+   \   000000BA   9300....           STS     LINSleepFlag, R16
+    177              }
+    178          #endif
+    179            }//received id
+    180            return data_has_changed_flag;
+   \                     ??DataReceived_Notification_5:
+   \   000000BE   E000               LDI     R16, 0
+   \   000000C0   E0E5               LDI     R30, 5
+   \   000000C2   ........           JMP     ?EPILOGUE_B5_L09
+    181          }
+    182          
+    183          // ------------------------------------------------------------------------------
+    184          // Description:         compare two lin data buffer
+    185          // Input Parameters:    data buffer pointer
+    186          // Output  Parameters:  '1' if data buffers are different , '0' otherwise
+    187          // ------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    188          U8 CompDataBuffer (U8 * Buffer1, U8 * Buffer2,U8 BufferSize) {
+   \                     CompDataBuffer:
+    189            U8 i;
+    190          
+    191            for (i= 0;i<BufferSize;i++){
+   \   00000000   E060               LDI     R22, 0
+   \   00000002   C001               RJMP    ??CompDataBuffer_0
+   \                     ??CompDataBuffer_1:
+   \   00000004   9563               INC     R22
+   \                     ??CompDataBuffer_0:
+   \   00000006   1764               CP      R22, R20
+   \   00000008   F468               BRCC    ??CompDataBuffer_2
+    192              if  (Buffer1[i] !=  Buffer2[i]) {
+   \   0000000A   E070               LDI     R23, 0
+   \   0000000C   01F8               MOVW    R31:R30, R17:R16
+   \   0000000E   0FE6               ADD     R30, R22
+   \   00000010   1FF7               ADC     R31, R23
+   \   00000012   8150               LD      R21, Z
+   \   00000014   01F9               MOVW    R31:R30, R19:R18
+   \   00000016   0FE6               ADD     R30, R22
+   \   00000018   1FF7               ADC     R31, R23
+   \   0000001A   8170               LD      R23, Z
+   \   0000001C   1757               CP      R21, R23
+   \   0000001E   F391               BREQ    ??CompDataBuffer_1
+    193                return 1;//buffer are different
+   \   00000020   E001               LDI     R16, 1
+   \   00000022   9508               RET
+    194              }
+    195            }
+    196            return 0; //buffer are identical
+   \                     ??CompDataBuffer_2:
+   \   00000024                      REQUIRE ?Subroutine0
+   \   00000024                      ;               // Fall through to label ?Subroutine0
+    197          }
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine0:
+   \   00000000   E000               LDI     R16, 0
+   \   00000002   9508               RET
+    198          
+    199          // ------------------------------------------------------------------------------
+    200          // Description:  Start transmitting a new lin frame
+    201          // Input Parameters:    none  (use my_schedule stucture and frame_index)
+    202          // Output  Parameters:  none (use my_schedule stucture)
+    203          // ------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    204          void Start_Lin_Master (void){
+   \                     Start_Lin_Master:
+   \   00000000   ........           CALL    ?PROLOGUE4_L09
+    205            t_schedule *   pt_schedule;
+    206            U8 i;
+    207          
+    208            pt_schedule = &my_schedule;
+   \   00000004   ....               LDI     R26, LOW(my_schedule)
+   \   00000006   ....               LDI     R27, (my_schedule) >> 8
+    209            Lin_clear_status();
+   \   00000008   E000               LDI     R16, 0
+   \   0000000A   9300....           STS     _lin_status, R16
+    210            if(Frame_index >=  (pt_schedule->number_of_frame-1)) {
+   \   0000000E   9100....           LDS     R16, Frame_index
+   \   00000012   E010               LDI     R17, 0
+   \   00000014   918C               LD      R24, X
+   \   00000016   E090               LDI     R25, 0
+   \   00000018   9701               SBIW    R25:R24, 1
+   \   0000001A   1708               CP      R16, R24
+   \   0000001C   0719               CPC     R17, R25
+   \   0000001E   F01C               BRLT    ??Start_Lin_Master_0
+    211              Frame_index = 0;
+   \   00000020   9310....           STS     Frame_index, R17
+   \   00000024   C003               RJMP    ??Start_Lin_Master_1
+    212            }else {
+    213              Frame_index ++ ;
+   \                     ??Start_Lin_Master_0:
+   \   00000026   9503               INC     R16
+   \   00000028   9300....           STS     Frame_index, R16
+    214            }
+    215          
+    216           // if(Frame_index <  pt_schedule->number_of_frame) {
+    217          #ifdef _SLEEP_TIMOUT_DETECTION
+    218              if(lin_sleep_message_request) { //check if sleep message tx request is pending
+   \                     ??Start_Lin_Master_1:
+   \   0000002C   9100....           LDS     R16, lin_sleep_message_request
+   \   00000030   2300               TST     R16
+   \   00000032   F0F9               BREQ    ??Start_Lin_Master_2
+    219                for(i=0;i<8;i++) {
+   \   00000034   E000               LDI     R16, 0
+    220                  tab_data[i] = 0;
+   \                     ??Start_Lin_Master_3:
+   \   00000036   01F8               MOVW    R31:R30, R17:R16
+   \   00000038   ....               SUBI    R30, LOW((-(tab_data) & 0xFFFF))
+   \   0000003A   ....               SBCI    R31, (-(tab_data) & 0xFFFF) >> 8
+   \   0000003C   8310               ST      Z, R17
+    221                }
+   \   0000003E   9503               INC     R16
+   \   00000040   3008               CPI     R16, 8
+   \   00000042   F3C8               BRCS    ??Start_Lin_Master_3
+    222          
+    223                msg_lin.id = ComputeIdField(0x0C,8);
+   \   00000044   E018               LDI     R17, 8
+   \   00000046   E00C               LDI     R16, 12
+   \   00000048   ....               RCALL   ComputeIdField
+   \   0000004A   9300....           STS     msg_lin, R16
+    224                cmd_lin.cmd = LIN_CMD_M_TX;    // Sent a sleep Frame
+   \   0000004E   E001               LDI     R16, 1
+   \   00000050   9300....           STS     (cmd_lin + 1), R16
+    225                cmd_lin.pt_lin_msg = &msg_lin;
+   \   00000054   ....               LDI     R16, LOW(msg_lin)
+   \   00000056   ....               LDI     R17, (msg_lin) >> 8
+   \   00000058   9300....           STS     (cmd_lin + 2), R16
+   \   0000005C   9310....           STS     (cmd_lin + 3), R17
+    226                msg_lin.pt_data = &tab_data[0];
+   \   00000060   ....               LDI     R16, LOW(tab_data)
+   \   00000062   ....               LDI     R17, (tab_data) >> 8
+   \   00000064   9300....           STS     (msg_lin + 1), R16
+   \   00000068   9310....           STS     (msg_lin + 2), R17
+    227                LinTxCtr = 2000;
+   \   0000006C   ED00               LDI     R16, 208
+   \   0000006E   E017               LDI     R17, 7
+   \   00000070   C053               RJMP    ??Start_Lin_Master_4
+    228                lin_cmd(&cmd_lin);
+    229              }else if(lin_master_in_sleep_mode){
+   \                     ??Start_Lin_Master_2:
+   \   00000072   9100....           LDS     R16, lin_master_in_sleep_mode
+   \   00000076   2300               TST     R16
+   \   00000078   F031               BREQ    ??Start_Lin_Master_5
+    230                LinTxCtr = 100;
+   \   0000007A   E604               LDI     R16, 100
+   \   0000007C   9300....           STS     LinTxCtr, R16
+   \   00000080   9310....           STS     (LinTxCtr + 1), R17
+   \   00000084   C051               RJMP    ??Start_Lin_Master_6
+    231          #else
+    232                if(0) {
+    233          #endif
+    234          
+    235                }else if ( pt_schedule->frame_message[Frame_index].frame_type == STANDART_LIN_FRAME_TYPE ) {
+   \                     ??Start_Lin_Master_5:
+   \   00000086   9100....           LDS     R16, Frame_index
+   \   0000008A   E018               LDI     R17, 8
+   \   0000008C   9F01               MUL     R16, R17
+   \   0000008E   01FD               MOVW    R31:R30, R27:R26
+   \   00000090   0DE0               ADD     R30, R0
+   \   00000092   1DF1               ADC     R31, R1
+   \   00000094   8105               LDD     R16, Z+5
+   \   00000096   2300               TST     R16
+   \   00000098   F4D1               BRNE    ??Start_Lin_Master_7
+    236                  DataRequest_Notification(pt_schedule->frame_message[Frame_index].frame_id,pt_schedule->frame_message[Frame_index].frame_size);
+   \   0000009A   01FD               MOVW    R31:R30, R27:R26
+   \   0000009C   0DE0               ADD     R30, R0
+   \   0000009E   1DF1               ADC     R31, R1
+   \   000000A0   8112               LDD     R17, Z+2
+   \   000000A2   01FD               MOVW    R31:R30, R27:R26
+   \   000000A4   0DE0               ADD     R30, R0
+   \   000000A6   1DF1               ADC     R31, R1
+   \   000000A8   8101               LDD     R16, Z+1
+   \   000000AA   ....               RCALL   DataRequest_Notification
+    237                  msg_lin.id = ComputeIdField(pt_schedule->frame_message[Frame_index].frame_id,pt_schedule->frame_message[Frame_index].frame_size);
+   \   000000AC   9100....           LDS     R16, Frame_index
+   \   000000B0   E018               LDI     R17, 8
+   \   000000B2   9F01               MUL     R16, R17
+   \   000000B4   01FD               MOVW    R31:R30, R27:R26
+   \   000000B6   0DE0               ADD     R30, R0
+   \   000000B8   1DF1               ADC     R31, R1
+   \   000000BA   8112               LDD     R17, Z+2
+   \   000000BC   01FD               MOVW    R31:R30, R27:R26
+   \   000000BE   0DE0               ADD     R30, R0
+   \   000000C0   1DF1               ADC     R31, R1
+   \   000000C2   8101               LDD     R16, Z+1
+   \   000000C4   ....               RCALL   ComputeIdField
+   \   000000C6   9300....           STS     msg_lin, R16
+    238                  cmd_lin.cmd = LIN_CMD_M_TX;    // Sent a new LIN Frame
+   \   000000CA   E001               LDI     R16, 1
+   \   000000CC   C00E               RJMP    ??Start_Lin_Master_8
+    239                  cmd_lin.pt_lin_msg = &msg_lin;
+    240                  msg_lin.pt_data = &tab_data[0];
+    241                  LinTxCtr = pt_schedule->frame_message[Frame_index].frame_delay;
+    242                  lin_cmd(&cmd_lin);
+    243                } else if ( pt_schedule->frame_message[Frame_index].frame_type == REMOTE_LIN_FRAME_TYPE ) { //response in frame
+   \                     ??Start_Lin_Master_7:
+   \   000000CE   3001               CPI     R16, 1
+   \   000000D0   F559               BRNE    ??Start_Lin_Master_6
+    244                  msg_lin.id = ComputeIdField(pt_schedule->frame_message[Frame_index].frame_id,pt_schedule->frame_message[Frame_index].frame_size);
+   \   000000D2   01FD               MOVW    R31:R30, R27:R26
+   \   000000D4   0DE0               ADD     R30, R0
+   \   000000D6   1DF1               ADC     R31, R1
+   \   000000D8   8112               LDD     R17, Z+2
+   \   000000DA   01FD               MOVW    R31:R30, R27:R26
+   \   000000DC   0DE0               ADD     R30, R0
+   \   000000DE   1DF1               ADC     R31, R1
+   \   000000E0   8101               LDD     R16, Z+1
+   \   000000E2   ....               RCALL   ComputeIdField
+   \   000000E4   9300....           STS     msg_lin, R16
+    245                  cmd_lin.cmd = LIN_CMD_M_RX;    // Send a new LIN Frame
+   \   000000E8   E002               LDI     R16, 2
+   \                     ??Start_Lin_Master_8:
+   \   000000EA   9300....           STS     (cmd_lin + 1), R16
+    246                  cmd_lin.pt_lin_msg = &msg_lin;
+   \   000000EE   ....               LDI     R16, LOW(msg_lin)
+   \   000000F0   ....               LDI     R17, (msg_lin) >> 8
+   \   000000F2   9300....           STS     (cmd_lin + 2), R16
+   \   000000F6   9310....           STS     (cmd_lin + 3), R17
+    247                  msg_lin.pt_data = &tab_data[0];
+   \   000000FA   ....               LDI     R16, LOW(tab_data)
+   \   000000FC   ....               LDI     R17, (tab_data) >> 8
+   \   000000FE   9300....           STS     (msg_lin + 1), R16
+   \   00000102   9310....           STS     (msg_lin + 2), R17
+    248                  LinTxCtr = pt_schedule->frame_message[Frame_index].frame_delay;
+   \   00000106   9100....           LDS     R16, Frame_index
+   \   0000010A   E018               LDI     R17, 8
+   \   0000010C   9F01               MUL     R16, R17
+   \   0000010E   0DA0               ADD     R26, R0
+   \   00000110   1DB1               ADC     R27, R1
+   \   00000112   01FD               MOVW    R31:R30, R27:R26
+   \   00000114   8106               LDD     R16, Z+6
+   \   00000116   8117               LDD     R17, Z+7
+   \                     ??Start_Lin_Master_4:
+   \   00000118   9300....           STS     LinTxCtr, R16
+   \   0000011C   9310....           STS     (LinTxCtr + 1), R17
+    249                  lin_cmd(&cmd_lin);
+   \   00000120   ....               LDI     R16, LOW(cmd_lin)
+   \   00000122   ....               LDI     R17, (cmd_lin) >> 8
+   \   00000124   ........           CALL    lin_cmd
+    250                }
+    251              //}
+    252            }
+   \                     ??Start_Lin_Master_6:
+   \   00000128   E0E4               LDI     R30, 4
+   \   0000012A   ........           JMP     ?EPILOGUE_B4_L09
+    253          
+    254            // ------------------------------------------------------------------------------
+    255            // Description:    LIN Scheduler function
+    256            // Input Parameters:  none (use my_schedule stucture)
+    257            // Output  Parameters:  '1' if a frame has been transmitted, '0' otherwise
+    258            // ------------------------------------------------------------------------------
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    259            U8 l_sch_tick (void) {
+   \                     l_sch_tick:
+    260              if(LinTxCtr > 0) {//decrease here the schedule transmission counter
+   \   00000000   9100....           LDS     R16, LinTxCtr
+   \   00000004   9110....           LDS     R17, (LinTxCtr + 1)
+   \   00000008   2B01               OR      R16, R17
+   \   0000000A   F039               BREQ    ??l_sch_tick_0
+    261                LinTxCtr--;
+   \   0000000C   ....               LDI     R30, LOW(LinTxCtr)
+   \   0000000E   ....               LDI     R31, (LinTxCtr) >> 8
+   \   00000010   8100               LD      R16, Z
+   \   00000012   5001               SUBI    R16, 1
+   \   00000014   4010               SBCI    R17, 0
+   \   00000016   8300               ST      Z, R16
+   \   00000018   8311               STD     Z+1, R17
+    262              }
+    263              lin_status = lin_getstatus(&cmd_lin);
+   \                     ??l_sch_tick_0:
+   \   0000001A   ....               LDI     R16, LOW(cmd_lin)
+   \   0000001C   ....               LDI     R17, (cmd_lin) >> 8
+   \   0000001E   ........           CALL    lin_getstatus
+   \   00000022   9300....           STS     lin_status, R16
+    264              if (lin_status == LIN_ACTION_ONGOING){
+   \   00000026   3003               CPI     R16, 3
+   \   00000028   F1B1               BREQ    ??l_sch_tick_1
+    265                //do nothing
+    266              }else if ((LIN_ACTION_COMPLETED == lin_status) ) {
+   \   0000002A   3001               CPI     R16, 1
+   \   0000002C   F511               BRNE    ??l_sch_tick_2
+    267                if (LIN_CMD_M_RX == cmd_lin.cmd) {
+   \   0000002E   9100....           LDS     R16, (cmd_lin + 1)
+   \   00000032   3002               CPI     R16, 2
+   \   00000034   F461               BRNE    ??l_sch_tick_3
+    268                  DataReceived_Notification((msg_lin.id & 0x0F) ,id_to_dlc (msg_lin.id));
+   \   00000036   9100....           LDS     R16, msg_lin
+   \   0000003A   ....               RCALL   id_to_dlc
+   \   0000003C   2F10               MOV     R17, R16
+   \   0000003E   9100....           LDS     R16, msg_lin
+   \   00000042   700F               ANDI    R16, 0x0F
+   \   00000044   ....               RCALL   DataReceived_Notification
+    269                  Lin_clear_status();
+   \   00000046   E000               LDI     R16, 0
+   \   00000048   9300....           STS     _lin_status, R16
+   \   0000004C   C024               RJMP    ??l_sch_tick_1
+    270                } else {
+    271          #ifdef _SLEEP_TIMOUT_DETECTION
+    272                  //check if sleep command has been sent
+    273                  if(lin_sleep_message_request) {
+   \                     ??l_sch_tick_3:
+   \   0000004E   9100....           LDS     R16, lin_sleep_message_request
+   \   00000052   2300               TST     R16
+   \   00000054   F101               BREQ    ??l_sch_tick_1
+    274                    lin_sleep_message_request = 0;
+   \   00000056   E000               LDI     R16, 0
+   \   00000058   9300....           STS     lin_sleep_message_request, R16
+    275                    lin_master_in_sleep_mode = 1;
+   \   0000005C   E001               LDI     R16, 1
+   \   0000005E   9300....           STS     lin_master_in_sleep_mode, R16
+    276                    //lin sleep message has been successfully sent
+    277                    //go to sleep and wait for a wake up (from slave or master command)
+    278                    Lin_cmd_gotosleep();
+   \   00000062   E109               LDI     R16, 25
+   \   00000064   E010               LDI     R17, 0
+   \   00000066   ........           CALL    Uart_set_baudrate
+   \   0000006A   E008               LDI     R16, 8
+   \   0000006C   9300....           STS     _lin_state, R16
+   \   00000070   C012               RJMP    ??l_sch_tick_1
+    279                  }
+    280          #endif
+    281                }
+    282              } else if ((LIN_AVAILABLE == lin_status) && (LinTxCtr == 0) )  {
+   \                     ??l_sch_tick_2:
+   \   00000072   2300               TST     R16
+   \   00000074   F431               BRNE    ??l_sch_tick_4
+   \   00000076   9100....           LDS     R16, LinTxCtr
+   \   0000007A   9110....           LDS     R17, (LinTxCtr + 1)
+   \   0000007E   2B01               OR      R16, R17
+   \   00000080   F049               BREQ    ??l_sch_tick_5
+    283                Start_Lin_Master() ;
+    284              } else {//error occured ?
+    285          #ifdef CAN_LIN_GATEWAY_ENABLE
+    286                if(lin_status & 0x80)
+    287                  SendCanErrorFrame = 1; //send a can error frame
+    288                LinErrorMessage = lin_status;
+    289          #endif
+    290          #ifdef _COUNTING_ERRORS_ENABLE
+    291                update_error_counter(lin_status);
+   \                     ??l_sch_tick_4:
+   \   00000082   9100....           LDS     R16, lin_status
+   \   00000086   ....               RCALL   update_error_counter
+    292          #endif
+    293          
+    294                if(LinTxCtr == 0) {
+   \   00000088   9100....           LDS     R16, LinTxCtr
+   \   0000008C   9110....           LDS     R17, (LinTxCtr + 1)
+   \   00000090   2B01               OR      R16, R17
+   \   00000092   F409               BRNE    ??l_sch_tick_1
+    295                  Start_Lin_Master() ;
+   \                     ??l_sch_tick_5:
+   \   00000094   ....               RCALL   Start_Lin_Master
+    296                }
+    297              }
+    298              return 0;
+   \                     ??l_sch_tick_1:
+   \   00000096   ....               RJMP    ?Subroutine0
+    299            }
+    300          
+    301          
+    302          #ifdef _COUNTING_ERRORS_ENABLE
+    303            //----------------------------------------------------------------------------//
+    304            // Description: updates error counters
+    305            //----------------------------------------------------------------------------//
+
+   \                                 In  segment CODE, align 2, keep-with-next
+    306            void update_error_counter(U8 status){
+   \                     update_error_counter:
+    307              if ((status & LIN_ERROR_BIT)==LIN_ERROR_BIT){
+   \   00000000   2F10               MOV     R17, R16
+   \   00000002   7C11               ANDI    R17, 0xC1
+   \   00000004   3C11               CPI     R17, 193
+   \   00000006   F419               BRNE    ??update_error_counter_0
+    308                countBERR++; //bit error
+   \   00000008   ....               LDI     R30, LOW(countBERR)
+   \   0000000A   ....               LDI     R31, (countBERR) >> 8
+   \   0000000C   C006               RJMP    ??update_error_counter_1
+    309              }else if ((status & LIN_ERROR_CSUM)==LIN_ERROR_CSUM){
+   \                     ??update_error_counter_0:
+   \   0000000E   2F10               MOV     R17, R16
+   \   00000010   7C12               ANDI    R17, 0xC2
+   \   00000012   3C12               CPI     R17, 194
+   \   00000014   F449               BRNE    ??update_error_counter_2
+    310                countCERR++; //checksum error
+   \   00000016   ....               LDI     R30, LOW(countCERR)
+   \   00000018   ....               LDI     R31, (countCERR) >> 8
+   \                     ??update_error_counter_1:
+   \   0000001A   8100               LD      R16, Z
+   \   0000001C   8111               LDD     R17, Z+1
+   \   0000001E   5F0F               SUBI    R16, 255
+   \   00000020   4F1F               SBCI    R17, 255
+   \   00000022   8300               ST      Z, R16
+   \   00000024   8311               STD     Z+1, R17
+   \   00000026   9508               RET
+    311              }else if ((status & LIN_ERROR_PARITY)==LIN_ERROR_PARITY){
+   \                     ??update_error_counter_2:
+   \   00000028   2F10               MOV     R17, R16
+   \   0000002A   7C14               ANDI    R17, 0xC4
+   \   0000002C   3C14               CPI     R17, 196
+   \   0000002E   F419               BRNE    ??update_error_counter_3
+    312                countPERR++; //lin indentifier parity error
+   \   00000030   ....               LDI     R30, LOW(countPERR)
+   \   00000032   ....               LDI     R31, (countPERR) >> 8
+   \   00000034   CFF2               RJMP    ??update_error_counter_1
+    313              }else if ((status & LIN_ERROR_SYNCHRO)==LIN_ERROR_SYNCHRO){
+   \                     ??update_error_counter_3:
+   \   00000036   2F10               MOV     R17, R16
+   \   00000038   7C18               ANDI    R17, 0xC8
+   \   0000003A   3C18               CPI     R17, 200
+   \   0000003C   F419               BRNE    ??update_error_counter_4
+    314                countSERR++; //synchro byte error
+   \   0000003E   ....               LDI     R30, LOW(countSERR)
+   \   00000040   ....               LDI     R31, (countSERR) >> 8
+   \   00000042   CFEB               RJMP    ??update_error_counter_1
+    315              }else if ((status & LIN_ERROR_NO_RESPONDING)==LIN_ERROR_NO_RESPONDING){
+   \                     ??update_error_counter_4:
+   \   00000044   7E00               ANDI    R16, 0xE0
+   \   00000046   3E00               CPI     R16, 224
+   \   00000048   F441               BRNE    ??update_error_counter_5
+    316                countRERR++; //slave not responding error
+   \   0000004A   ....               LDI     R30, LOW(countRERR)
+   \   0000004C   ....               LDI     R31, (countRERR) >> 8
+   \   0000004E   8100               LD      R16, Z
+   \   00000050   8111               LDD     R17, Z+1
+   \   00000052   5F0F               SUBI    R16, 255
+   \   00000054   4F1F               SBCI    R17, 255
+   \   00000056   8300               ST      Z, R16
+   \   00000058   8311               STD     Z+1, R17
+    317              }
+    318            }
+   \                     ??update_error_counter_5:
+   \   0000005A   9508               RET
+    319          #endif
+
+   Maximum stack usage in bytes:
+
+   CSTACK RSTACK Function
+   ------ ------ --------
+      0      2   CompDataBuffer
+      0      2   ComputeIdField
+      5      2   DataReceived_Notification
+        5      2   -> CompDataBuffer
+      0      2   DataRequest_Notification
+      0      2   LIN_TIMER_init
+      4      2   Start_Lin_Master
+        4      2   -> ComputeIdField
+        4      2   -> DataRequest_Notification
+        4      2   -> lin_cmd
+      0      2   id_to_dlc
+      0      2   int2hex
+      0      2   l_sch_tick
+        0      2   -> DataReceived_Notification
+        0      2   -> Start_Lin_Master
+        0      2   -> Uart_set_baudrate
+        0      2   -> id_to_dlc
+        0      2   -> lin_getstatus
+        0      2   -> update_error_counter
+      0      2   update_error_counter
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ?Subroutine0
+      36  CompDataBuffer
+      26  ComputeIdField
+     198  DataReceived_Notification
+      74  DataRequest_Notification
+       1  Frame_index
+       1  LINSleepFlag
+      36  LIN_TIMER_init
+       2  LinTxCtr
+     302  Start_Lin_Master
+       1  _A_ACSR
+       2  _A_ADC
+       1  _A_ADCSRA
+       1  _A_ADCSRB
+       1  _A_ADMUX
+       1  _A_ASSR
+       1  _A_CANBT1
+       1  _A_CANBT2
+       1  _A_CANBT3
+       1  _A_CANCDMOB
+       1  _A_CANEN1
+       1  _A_CANEN2
+       1  _A_CANGCON
+       1  _A_CANGIE
+       1  _A_CANGIT
+       1  _A_CANGSTA
+       1  _A_CANHPMOB
+       1  _A_CANIDM1
+       1  _A_CANIDM2
+       1  _A_CANIDM3
+       1  _A_CANIDM4
+       1  _A_CANIDT1
+       1  _A_CANIDT2
+       1  _A_CANIDT3
+       1  _A_CANIDT4
+       1  _A_CANIE1
+       1  _A_CANIE2
+       1  _A_CANMSG
+       1  _A_CANPAGE
+       1  _A_CANREC
+       1  _A_CANSIT1
+       1  _A_CANSIT2
+       2  _A_CANSTM
+       1  _A_CANSTMOB
+       1  _A_CANTCON
+       1  _A_CANTEC
+       2  _A_CANTIM
+       2  _A_CANTTC
+       1  _A_CLKPR
+       1  _A_DDRA
+       1  _A_DDRB
+       1  _A_DDRC
+       1  _A_DDRD
+       1  _A_DDRE
+       1  _A_DDRF
+       1  _A_DDRG
+       1  _A_DIDR0
+       1  _A_DIDR1
+       2  _A_EEAR
+       1  _A_EECR
+       1  _A_EEDR
+       1  _A_EICRA
+       1  _A_EICRB
+       1  _A_EIFR
+       1  _A_EIMSK
+       1  _A_GPIOR0
+       1  _A_GPIOR1
+       1  _A_GPIOR2
+       1  _A_GTCCR
+       2  _A_ICR1
+       2  _A_ICR3
+       1  _A_MCUCR
+       1  _A_MCUSR
+       1  _A_OCDR
+       1  _A_OCR0A
+       2  _A_OCR1A
+       2  _A_OCR1B
+       2  _A_OCR1C
+       1  _A_OCR2A
+       2  _A_OCR3A
+       2  _A_OCR3B
+       2  _A_OCR3C
+       1  _A_OSCCAL
+       1  _A_PINA
+       1  _A_PINB
+       1  _A_PINC
+       1  _A_PIND
+       1  _A_PINE
+       1  _A_PINF
+       1  _A_PING
+       1  _A_PORTA
+       1  _A_PORTB
+       1  _A_PORTC
+       1  _A_PORTD
+       1  _A_PORTE
+       1  _A_PORTF
+       1  _A_PORTG
+       1  _A_RAMPZ
+       1  _A_SMCR
+       2  _A_SP
+       1  _A_SPCR
+       1  _A_SPDR
+       1  _A_SPMCSR
+       1  _A_SPSR
+       1  _A_SREG
+       1  _A_TCCR0A
+       1  _A_TCCR1A
+       1  _A_TCCR1B
+       1  _A_TCCR1C
+       1  _A_TCCR2A
+       1  _A_TCCR3A
+       1  _A_TCCR3B
+       1  _A_TCCR3C
+       1  _A_TCNT0
+       2  _A_TCNT1
+       1  _A_TCNT2
+       2  _A_TCNT3
+       1  _A_TIFR0
+       1  _A_TIFR1
+       1  _A_TIFR2
+       1  _A_TIFR3
+       1  _A_TIMSK0
+       1  _A_TIMSK1
+       1  _A_TIMSK2
+       1  _A_TIMSK3
+       1  _A_TWAR
+       1  _A_TWBR
+       1  _A_TWCR
+       1  _A_TWDR
+       1  _A_TWSR
+       2  _A_UBRR0
+       2  _A_UBRR1
+       1  _A_UCSR0A
+       1  _A_UCSR0B
+       1  _A_UCSR0C
+       1  _A_UCSR1A
+       1  _A_UCSR1B
+       1  _A_UCSR1C
+       1  _A_UDR0
+       1  _A_UDR1
+       1  _A_WDTCR
+       1  _A_XMCRA
+       1  _A_XMCRB
+       4  cmd_lin
+       2  countBERR
+       2  countCERR
+       2  countPERR
+       2  countRERR
+       2  countSERR
+      22  id_to_dlc
+      12  int2hex
+     152  l_sch_tick
+       1  lin_sleep_message_request
+       1  lin_status
+       3  msg_lin
+      41  my_schedule
+       8  tab_data
+      92  update_error_counter
+       7  -- Other
+
+ 
+ 151 bytes in segment ABSOLUTE
+ 954 bytes in segment CODE
+   7 bytes in segment INITTAB
+  72 bytes in segment NEAR_Z
+ 
+ 954 bytes of CODE memory (+   7 bytes shared)
+  72 bytes of DATA memory (+ 151 bytes shared)
+
+Errors: none
+Warnings: none

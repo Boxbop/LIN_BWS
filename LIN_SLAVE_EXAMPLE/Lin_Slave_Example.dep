@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>3011620218</fileChecksum>
+  <configuration>
+    <name>Debug</name>
+    <outputs>
+      <file>$PROJ_DIR$\Debug\List\timer1_lib.lst</file>
+      <file>$PROJ_DIR$\..\LIB_MCU\LIN_UART\lin_drv_usart.h</file>
+      <file>$PROJ_DIR$\..\LIB_MCU\LIN_UART\lin_drv_usart.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\timer1ovf_isr.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\timer2_lib.pbi</file>
+      <file>$PROJ_DIR$\Debug\List\timer1ovf_isr.lst</file>
+      <file>$PROJ_DIR$\Debug\List\timer2ovf_isr.lst</file>
+      <file>$PROJ_DIR$\Debug\List\timer2_lib.lst</file>
+      <file>$PROJ_DIR$\Debug\Obj\timer2ovf_isr.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\Lin_Slave_Example.pbd</file>
+      <file>$PROJ_DIR$\Debug\List\Lin_Slave_Example.map</file>
+      <file>$PROJ_DIR$\..\LIB_MCU\LIN_UART\lin_lib.c</file>
+      <file>$PROJ_DIR$\lin_slave_example_main.c</file>
+      <file>$PROJ_DIR$\Debug\Exe\Lin_Slave_Example.dbg</file>
+      <file>$TOOLKIT_DIR$\config\lnkm88s.xcl</file>
+      <file>$PROJ_DIR$\..\LIB_MCU\LIN_UART\runtime_calibration_lib.c</file>
+      <file>$PROJ_DIR$\..\LIB_MCU\LIN_UART\slave_lin.c</file>
+      <file>$PROJ_DIR$\..\LIB_MCU\TIMER\timer1_lib.c</file>
+      <file>$PROJ_DIR$\timer1ovf_isr.c</file>
+      <file>$PROJ_DIR$\..\LIB_MCU\TIMER\timer2_lib.c</file>
+      <file>$PROJ_DIR$\timer2ovf_isr.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\slave_lin.r90</file>
+      <file>$PROJ_DIR$\Debug\Obj\timer1ovf_isr.r90</file>
+      <file>$PROJ_DIR$\Debug\Obj\timer1_lib.r90</file>
+      <file>$PROJ_DIR$\Debug\Obj\runtime_calibration_lib.r90</file>
+      <file>$PROJ_DIR$\Debug\Obj\lin_slave_example_main.r90</file>
+      <file>$PROJ_DIR$\Debug\Obj\lin_lib.r90</file>
+      <file>$TOOLKIT_DIR$\lib\clib\cl1s-ec.r90</file>
+      <file>$PROJ_DIR$\Debug\Obj\lin_drv_usart.r90</file>
+      <file>$PROJ_DIR$\Debug\Obj\timer2_lib.r90</file>
+      <file>$PROJ_DIR$\Debug\Obj\timer2ovf_isr.r90</file>
+      <file>$PROJ_DIR$\Debug\Obj\lin_lib.pbi</file>
+      <file>$PROJ_DIR$\Debug\List\lin_lib.lst</file>
+      <file>$TOOLKIT_DIR$\inc\iom88.h</file>
+      <file>$PROJ_DIR$\config.h</file>
+      <file>$TOOLKIT_DIR$\inc\iomacro.h</file>
+      <file>$PROJ_DIR$\..\LIB_BOARD\board_example_mega88.h</file>
+      <file>$PROJ_DIR$\..\LIB_MCU\LIN_UART\lin_lib.h</file>
+      <file>$PROJ_DIR$\..\LIB_MCU\UART\uart_drv.h</file>
+      <file>$PROJ_DIR$\..\LIB_MCU\LIN_UART\lin_bdr.h</file>
+      <file>$PROJ_DIR$\..\LIB_MCU\TIMER\timer2_lib.h</file>
+      <file>$PROJ_DIR$\..\LIB_MCU\LIN_UART\slave_lin.h</file>
+      <file>$PROJ_DIR$\..\LIB_MCU\TIMER\timer0_lib.h</file>
+      <file>$PROJ_DIR$\..\LIB_MCU\TIMER\timer1_lib.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\lin_drv_usart.pbi</file>
+      <file>$PROJ_DIR$\..\LIB_MCU\LIN_UART\runtime_calibration_lib.h</file>
+      <file>$PROJ_DIR$\Debug\List\lin_drv_usart.lst</file>
+      <file>$PROJ_DIR$\Debug\Obj\slave_lin.pbi</file>
+      <file>$PROJ_DIR$\Debug\List\lin_slave_example_main.lst</file>
+      <file>$PROJ_DIR$\Debug\Obj\lin_slave_example_main.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\inavr.h</file>
+      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
+      <file>$PROJ_DIR$\Debug\List\slave_lin.lst</file>
+      <file>$PROJ_DIR$\Debug\List\runtime_calibration_lib.lst</file>
+      <file>$PROJ_DIR$\Debug\Obj\runtime_calibration_lib.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\timer1_lib.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\bitdefinitions\iom88.inc</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\..\LIB_MCU\LIN_UART\lin_drv_usart.c</name>
+      <outputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 28 46</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 44</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 34 33 35 36 1 38 39 40 41 37 45 43 42</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 34 41 35 38 36 56 42 1 33 40 37 39 45 43</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 10 13</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\LIB_MCU\LIN_UART\lin_lib.c</name>
+      <outputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 26 32</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 31</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 34 33 35 36 37 1 38 39 40 41 42 43 45</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 33 45 43 1 40 34 37 36 35 41 38 56 39 42</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\lin_slave_example_main.c</name>
+      <outputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 25 48</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 49</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 34 33 35 36 41 37 1 38 39 40 42 43 45 50 51</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 45 35 37 36 1 40 34 41 50 33 43 38 56 42 39 51</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Exe\Lin_Slave_Example.dbg</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 10</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 14 28 26 25 24 21 23 22 29 30 27</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\LIB_MCU\LIN_UART\runtime_calibration_lib.c</name>
+      <outputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 24 53</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 54</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 45 34 33 35 36 43 41 37 1 38 39 40 42</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 41 38 43 35 34 36 33 1 45 40 56 37 42 39</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\LIB_MCU\LIN_UART\slave_lin.c</name>
+      <outputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 21 52</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 47</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 41 34 33 35 36 37 1 38 39 40 42 43 45</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 42 35 56 37 40 36 1 38 41 34 43 45 33 39</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\LIB_MCU\TIMER\timer1_lib.c</name>
+      <outputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 23 0</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 55</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 43 34 33 35 36</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 36 35 56 34 33 43</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\timer1ovf_isr.c</name>
+      <outputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 22 5</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 3</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 34 33 35 36 41 37 1 38 39 40 42 43 45</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 36 43 34 35 41 38 33 1 45 40 56 37 42 39</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\LIB_MCU\TIMER\timer2_lib.c</name>
+      <outputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 29 7</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 4</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 40 34 33 35 36 41 37 1 38 39 45 43 42</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 37 33 39 34 40 1 41 36 35 56 42 45 43 38</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\timer2ovf_isr.c</name>
+      <outputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 30 6</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 8</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCAVR</name>
+          <file> 34 33 35 36 40 41 37 1 38 39 45 43 42</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 37 33 45 39 34 1 40 41 36 35 42 56 43 38</file>
+        </tool>
+      </inputs>
+    </file>
+    <forcedrebuild>
+      <name>[REBUILD_ALL]</name>
+    </forcedrebuild>
+  </configuration>
+  <configuration>
+    <name>Release</name>
+    <outputs/>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>[REBUILD_ALL]</name>
+    </forcedrebuild>
+  </configuration>
+</project>
+
+

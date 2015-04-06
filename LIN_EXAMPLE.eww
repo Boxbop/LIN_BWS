@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<workspace>
+  <project>
+    <path>$WS_DIR$\LIN_MASTER_EXAMPLE\Lin_Master_Example.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$\LIN_SLAVE_EXAMPLE\Lin_Slave_Example.ewp</path>
+  </project>
+  <batchBuild/>
+</workspace>
+
+

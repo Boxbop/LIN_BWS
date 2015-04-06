@@ -1,0 +1,974 @@
+###############################################################################
+#
+# IAR C/C++ Compiler V6.50.1.797 for Atmel AVR            06/Apr/2015  14:39:44
+# Copyright 1996-2014 IAR Systems AB.
+# Standalone license - IAR Embedded Workbench 4K Kickstart edition for Atmel AVR 6.50
+#
+#    Source file  =  C:\Users\lisa\Desktop\LIN_BWS\LIB_MCU\TIMER\timer2_lib.c
+#    Command line =  
+#        C:\Users\lisa\Desktop\LIN_BWS\LIB_MCU\TIMER\timer2_lib.c --cpu=can128
+#        -ms -o C:\Users\lisa\Desktop\LIN_BWS\LIN_MASTER_EXAMPLE\Debug\Obj\ -lC
+#        C:\Users\lisa\Desktop\LIN_BWS\LIN_MASTER_EXAMPLE\Debug\List\
+#        --diag_suppress Pa082 -y --root_variables --no_cse --no_inline
+#        --no_code_motion --no_cross_call --no_clustering --no_tbaa --debug
+#        -DENABLE_BIT_DEFINITIONS -e -I
+#        C:\Users\lisa\Desktop\LIN_BWS\LIN_MASTER_EXAMPLE\..\ -I
+#        C:\Users\lisa\Desktop\LIN_BWS\LIN_MASTER_EXAMPLE\..\..\ -I
+#        C:\Users\lisa\Desktop\LIN_BWS\LIN_MASTER_EXAMPLE\..\..\..\ -I
+#        C:\Users\lisa\Desktop\LIN_BWS\LIN_MASTER_EXAMPLE\..\ -I
+#        C:\Users\lisa\Desktop\LIN_BWS\LIN_MASTER_EXAMPLE\ --eeprom_size 4096
+#        --clib -Ohz
+#    List file    =  
+#        C:\Users\lisa\Desktop\LIN_BWS\LIN_MASTER_EXAMPLE\Debug\List\timer2_lib.lst
+#    Object file  =  
+#        C:\Users\lisa\Desktop\LIN_BWS\LIN_MASTER_EXAMPLE\Debug\Obj\timer2_lib.r90
+#
+###############################################################################
+
+C:\Users\lisa\Desktop\LIN_BWS\LIB_MCU\TIMER\timer2_lib.c
+      1          /*
+      2          **
+      3          ****************************************************************************
+      4          **
+      5          **
+      6          **             Copyright (c) 2004-2005 - Atmel Corporation
+      7          **             Proprietary Information
+      8          **
+      9          ** Project    	: AVR LIN CONTROLLER
+     10          ** Module     	: timer2_lib.c
+     11          ** Description	: timer 2 library
+     12          **
+     13          **
+     14          ** Version :     Date:         Author:      Comment:
+     15          **    1.0        23.06.2005    EG
+     16          **
+     17          **
+     18          **
+     19          **
+     20          ** LICENSE -
+     21          **
+     22          ** ATMEL - 2004-2005
+     23          ** All software programs are provided 'as is' without warranty of any kind:
+     24          ** Atmel does not state the suitability of the provided materials for any
+     25          ** purpose. Atmel hereby disclaim all warranties and conditions with regard
+     26          ** to the provided software, including all implied warranties, fitness for
+     27          ** a particular purpose, title and non-infringement.In no event will Atmel
+     28          ** be liable for any indirect or consequential damages or any damages
+     29          ** whatsoever resulting from the usage of the software program.
+     30          ****************************************************************************
+     31          **
+     32          */
+     33          
+     34          
+     35          
+     36          /*_____ I N C L U D E - F I L E S ____________________________________________*/
+     37          
+     38          #include "lib_mcu/timer/timer2_lib.h"
+
+   \                                 In  segment ABSOLUTE, at 0xfa, root
+   \   union <unnamed> volatile __io _A_CANMSG
+   \                     _A_CANMSG:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xf8, root
+   \   union <unnamed> volatile __io _A_CANSTM
+   \                     _A_CANSTM:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0xf7, root
+   \   union <unnamed> volatile __io _A_CANIDM1
+   \                     _A_CANIDM1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xf6, root
+   \   union <unnamed> volatile __io _A_CANIDM2
+   \                     _A_CANIDM2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xf5, root
+   \   union <unnamed> volatile __io _A_CANIDM3
+   \                     _A_CANIDM3:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xf4, root
+   \   union <unnamed> volatile __io _A_CANIDM4
+   \                     _A_CANIDM4:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xf3, root
+   \   union <unnamed> volatile __io _A_CANIDT1
+   \                     _A_CANIDT1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xf2, root
+   \   union <unnamed> volatile __io _A_CANIDT2
+   \                     _A_CANIDT2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xf1, root
+   \   union <unnamed> volatile __io _A_CANIDT3
+   \                     _A_CANIDT3:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xf0, root
+   \   union <unnamed> volatile __io _A_CANIDT4
+   \                     _A_CANIDT4:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xef, root
+   \   union <unnamed> volatile __io _A_CANCDMOB
+   \                     _A_CANCDMOB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xee, root
+   \   union <unnamed> volatile __io _A_CANSTMOB
+   \                     _A_CANSTMOB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xed, root
+   \   union <unnamed> volatile __io _A_CANPAGE
+   \                     _A_CANPAGE:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xec, root
+   \   union <unnamed> volatile __io _A_CANHPMOB
+   \                     _A_CANHPMOB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xeb, root
+   \   union <unnamed> volatile __io _A_CANREC
+   \                     _A_CANREC:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xea, root
+   \   union <unnamed> volatile __io _A_CANTEC
+   \                     _A_CANTEC:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xe8, root
+   \   union <unnamed> volatile __io _A_CANTTC
+   \                     _A_CANTTC:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0xe6, root
+   \   union <unnamed> volatile __io _A_CANTIM
+   \                     _A_CANTIM:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0xe5, root
+   \   union <unnamed> volatile __io _A_CANTCON
+   \                     _A_CANTCON:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xe4, root
+   \   union <unnamed> volatile __io _A_CANBT3
+   \                     _A_CANBT3:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xe3, root
+   \   union <unnamed> volatile __io _A_CANBT2
+   \                     _A_CANBT2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xe2, root
+   \   union <unnamed> volatile __io _A_CANBT1
+   \                     _A_CANBT1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xe1, root
+   \   union <unnamed> volatile __io _A_CANSIT1
+   \                     _A_CANSIT1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xe0, root
+   \   union <unnamed> volatile __io _A_CANSIT2
+   \                     _A_CANSIT2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xdf, root
+   \   union <unnamed> volatile __io _A_CANIE1
+   \                     _A_CANIE1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xde, root
+   \   union <unnamed> volatile __io _A_CANIE2
+   \                     _A_CANIE2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xdd, root
+   \   union <unnamed> volatile __io _A_CANEN1
+   \                     _A_CANEN1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xdc, root
+   \   union <unnamed> volatile __io _A_CANEN2
+   \                     _A_CANEN2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xdb, root
+   \   union <unnamed> volatile __io _A_CANGIE
+   \                     _A_CANGIE:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xda, root
+   \   union <unnamed> volatile __io _A_CANGIT
+   \                     _A_CANGIT:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xd9, root
+   \   union <unnamed> volatile __io _A_CANGSTA
+   \                     _A_CANGSTA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xd8, root
+   \   union <unnamed> volatile __io _A_CANGCON
+   \                     _A_CANGCON:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xce, root
+   \   union <unnamed> volatile __io _A_UDR1
+   \                     _A_UDR1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xcc, root
+   \   union <unnamed> volatile __io _A_UBRR1
+   \                     _A_UBRR1:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0xca, root
+   \   union <unnamed> volatile __io _A_UCSR1C
+   \                     _A_UCSR1C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xc9, root
+   \   union <unnamed> volatile __io _A_UCSR1B
+   \                     _A_UCSR1B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xc8, root
+   \   union <unnamed> volatile __io _A_UCSR1A
+   \                     _A_UCSR1A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xc6, root
+   \   union <unnamed> volatile __io _A_UDR0
+   \                     _A_UDR0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xc4, root
+   \   union <unnamed> volatile __io _A_UBRR0
+   \                     _A_UBRR0:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0xc2, root
+   \   union <unnamed> volatile __io _A_UCSR0C
+   \                     _A_UCSR0C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xc1, root
+   \   union <unnamed> volatile __io _A_UCSR0B
+   \                     _A_UCSR0B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xc0, root
+   \   union <unnamed> volatile __io _A_UCSR0A
+   \                     _A_UCSR0A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xbc, root
+   \   union <unnamed> volatile __io _A_TWCR
+   \                     _A_TWCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xbb, root
+   \   union <unnamed> volatile __io _A_TWDR
+   \                     _A_TWDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xba, root
+   \   union <unnamed> volatile __io _A_TWAR
+   \                     _A_TWAR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xb9, root
+   \   union <unnamed> volatile __io _A_TWSR
+   \                     _A_TWSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xb8, root
+   \   union <unnamed> volatile __io _A_TWBR
+   \                     _A_TWBR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xb6, root
+   \   union <unnamed> volatile __io _A_ASSR
+   \                     _A_ASSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xb3, root
+   \   union <unnamed> volatile __io _A_OCR2A
+   \                     _A_OCR2A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xb2, root
+   \   union <unnamed> volatile __io _A_TCNT2
+   \                     _A_TCNT2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0xb0, root
+   \   union <unnamed> volatile __io _A_TCCR2A
+   \                     _A_TCCR2A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x9c, root
+   \   union <unnamed> volatile __io _A_OCR3C
+   \                     _A_OCR3C:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x9a, root
+   \   union <unnamed> volatile __io _A_OCR3B
+   \                     _A_OCR3B:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x98, root
+   \   union <unnamed> volatile __io _A_OCR3A
+   \                     _A_OCR3A:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x96, root
+   \   union <unnamed> volatile __io _A_ICR3
+   \                     _A_ICR3:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x94, root
+   \   union <unnamed> volatile __io _A_TCNT3
+   \                     _A_TCNT3:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x92, root
+   \   union <unnamed> volatile __io _A_TCCR3C
+   \                     _A_TCCR3C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x91, root
+   \   union <unnamed> volatile __io _A_TCCR3B
+   \                     _A_TCCR3B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x90, root
+   \   union <unnamed> volatile __io _A_TCCR3A
+   \                     _A_TCCR3A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x8c, root
+   \   union <unnamed> volatile __io _A_OCR1C
+   \                     _A_OCR1C:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x8a, root
+   \   union <unnamed> volatile __io _A_OCR1B
+   \                     _A_OCR1B:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x88, root
+   \   union <unnamed> volatile __io _A_OCR1A
+   \                     _A_OCR1A:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x86, root
+   \   union <unnamed> volatile __io _A_ICR1
+   \                     _A_ICR1:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x84, root
+   \   union <unnamed> volatile __io _A_TCNT1
+   \                     _A_TCNT1:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x82, root
+   \   union <unnamed> volatile __io _A_TCCR1C
+   \                     _A_TCCR1C:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x81, root
+   \   union <unnamed> volatile __io _A_TCCR1B
+   \                     _A_TCCR1B:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x80, root
+   \   union <unnamed> volatile __io _A_TCCR1A
+   \                     _A_TCCR1A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x7f, root
+   \   union <unnamed> volatile __io _A_DIDR1
+   \                     _A_DIDR1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x7e, root
+   \   union <unnamed> volatile __io _A_DIDR0
+   \                     _A_DIDR0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x7c, root
+   \   union <unnamed> volatile __io _A_ADMUX
+   \                     _A_ADMUX:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x7b, root
+   \   union <unnamed> volatile __io _A_ADCSRB
+   \                     _A_ADCSRB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x7a, root
+   \   union <unnamed> volatile __io _A_ADCSRA
+   \                     _A_ADCSRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x78, root
+   \   union <unnamed> volatile __io _A_ADC
+   \                     _A_ADC:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x75, root
+   \   union <unnamed> volatile __io _A_XMCRB
+   \                     _A_XMCRB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x74, root
+   \   union <unnamed> volatile __io _A_XMCRA
+   \                     _A_XMCRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x71, root
+   \   union <unnamed> volatile __io _A_TIMSK3
+   \                     _A_TIMSK3:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x70, root
+   \   union <unnamed> volatile __io _A_TIMSK2
+   \                     _A_TIMSK2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6f, root
+   \   union <unnamed> volatile __io _A_TIMSK1
+   \                     _A_TIMSK1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6e, root
+   \   union <unnamed> volatile __io _A_TIMSK0
+   \                     _A_TIMSK0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x6a, root
+   \   union <unnamed> volatile __io _A_EICRB
+   \                     _A_EICRB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x69, root
+   \   union <unnamed> volatile __io _A_EICRA
+   \                     _A_EICRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x66, root
+   \   union <unnamed> volatile __io _A_OSCCAL
+   \                     _A_OSCCAL:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x61, root
+   \   union <unnamed> volatile __io _A_CLKPR
+   \                     _A_CLKPR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x60, root
+   \   union <unnamed> volatile __io _A_WDTCR
+   \                     _A_WDTCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x5f, root
+   \   union <unnamed> volatile __io _A_SREG
+   \                     _A_SREG:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x5d, root
+   \   union <unnamed> volatile __io _A_SP
+   \                     _A_SP:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x5b, root
+   \   union <unnamed> volatile __io _A_RAMPZ
+   \                     _A_RAMPZ:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x57, root
+   \   union <unnamed> volatile __io _A_SPMCSR
+   \                     _A_SPMCSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x55, root
+   \   union <unnamed> volatile __io _A_MCUCR
+   \                     _A_MCUCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x54, root
+   \   union <unnamed> volatile __io _A_MCUSR
+   \                     _A_MCUSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x53, root
+   \   union <unnamed> volatile __io _A_SMCR
+   \                     _A_SMCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x51, root
+   \   union <unnamed> volatile __io _A_OCDR
+   \                     _A_OCDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x50, root
+   \   union <unnamed> volatile __io _A_ACSR
+   \                     _A_ACSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x4e, root
+   \   union <unnamed> volatile __io _A_SPDR
+   \                     _A_SPDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x4d, root
+   \   union <unnamed> volatile __io _A_SPSR
+   \                     _A_SPSR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x4c, root
+   \   union <unnamed> volatile __io _A_SPCR
+   \                     _A_SPCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x4b, root
+   \   union <unnamed> volatile __io _A_GPIOR2
+   \                     _A_GPIOR2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x4a, root
+   \   union <unnamed> volatile __io _A_GPIOR1
+   \                     _A_GPIOR1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x47, root
+   \   union <unnamed> volatile __io _A_OCR0A
+   \                     _A_OCR0A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x46, root
+   \   union <unnamed> volatile __io _A_TCNT0
+   \                     _A_TCNT0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x44, root
+   \   union <unnamed> volatile __io _A_TCCR0A
+   \                     _A_TCCR0A:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x43, root
+   \   union <unnamed> volatile __io _A_GTCCR
+   \                     _A_GTCCR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x41, root
+   \   union <unnamed> volatile __io _A_EEAR
+   \                     _A_EEAR:
+   \   00000000                      DS8 2
+
+   \                                 In  segment ABSOLUTE, at 0x40, root
+   \   union <unnamed> volatile __io _A_EEDR
+   \                     _A_EEDR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3f, root
+   \   union <unnamed> volatile __io _A_EECR
+   \                     _A_EECR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3e, root
+   \   union <unnamed> volatile __io _A_GPIOR0
+   \                     _A_GPIOR0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3d, root
+   \   union <unnamed> volatile __io _A_EIMSK
+   \                     _A_EIMSK:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x3c, root
+   \   union <unnamed> volatile __io _A_EIFR
+   \                     _A_EIFR:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x38, root
+   \   union <unnamed> volatile __io _A_TIFR3
+   \                     _A_TIFR3:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x37, root
+   \   union <unnamed> volatile __io _A_TIFR2
+   \                     _A_TIFR2:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x36, root
+   \   union <unnamed> volatile __io _A_TIFR1
+   \                     _A_TIFR1:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x35, root
+   \   union <unnamed> volatile __io _A_TIFR0
+   \                     _A_TIFR0:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x34, root
+   \   union <unnamed> volatile __io _A_PORTG
+   \                     _A_PORTG:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x33, root
+   \   union <unnamed> volatile __io _A_DDRG
+   \                     _A_DDRG:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x32, root
+   \   union <unnamed> volatile __io _A_PING
+   \                     _A_PING:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x31, root
+   \   union <unnamed> volatile __io _A_PORTF
+   \                     _A_PORTF:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x30, root
+   \   union <unnamed> volatile __io _A_DDRF
+   \                     _A_DDRF:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2f, root
+   \   union <unnamed> volatile __io _A_PINF
+   \                     _A_PINF:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2e, root
+   \   union <unnamed> volatile __io _A_PORTE
+   \                     _A_PORTE:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2d, root
+   \   union <unnamed> volatile __io _A_DDRE
+   \                     _A_DDRE:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2c, root
+   \   union <unnamed> volatile __io _A_PINE
+   \                     _A_PINE:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2b, root
+   \   union <unnamed> volatile __io _A_PORTD
+   \                     _A_PORTD:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x2a, root
+   \   union <unnamed> volatile __io _A_DDRD
+   \                     _A_DDRD:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x29, root
+   \   union <unnamed> volatile __io _A_PIND
+   \                     _A_PIND:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x28, root
+   \   union <unnamed> volatile __io _A_PORTC
+   \                     _A_PORTC:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x27, root
+   \   union <unnamed> volatile __io _A_DDRC
+   \                     _A_DDRC:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x26, root
+   \   union <unnamed> volatile __io _A_PINC
+   \                     _A_PINC:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x25, root
+   \   union <unnamed> volatile __io _A_PORTB
+   \                     _A_PORTB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x24, root
+   \   union <unnamed> volatile __io _A_DDRB
+   \                     _A_DDRB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x23, root
+   \   union <unnamed> volatile __io _A_PINB
+   \                     _A_PINB:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x22, root
+   \   union <unnamed> volatile __io _A_PORTA
+   \                     _A_PORTA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x21, root
+   \   union <unnamed> volatile __io _A_DDRA
+   \                     _A_DDRA:
+   \   00000000                      DS8 1
+
+   \                                 In  segment ABSOLUTE, at 0x20, root
+   \   union <unnamed> volatile __io _A_PINA
+   \                     _A_PINA:
+   \   00000000                      DS8 1
+     39          
+     40          extern U8 timout_ovf_cnt ;//for 2400 baud rate support @8MHz only
+     41          
+     42          #ifdef _TIMOUT_DETECTION
+     43          /*------------------------------------------------*/
+     44          /*  Timer Start                                   */
+     45          /*------------------------------------------------*/
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     46          void Timer2_start(U16 timout,U8 dlc){
+   \                     Timer2_start:
+     47            TIMSK2  = 1 << TOIE2;    // Int T2 Overflow Enabled
+   \   00000000   E021               LDI     R18, 1
+   \   00000002   9320....           STS     _A_TIMSK2, R18
+     48          
+     49          #ifndef TIMER_2_PRESCALER
+     50          #error "timer 2 prescaler not defined"
+     51          #endif
+     52          
+     53          #if LIN_BAUDRATE == 2400
+     54            if (dlc == 8 ) {
+     55              timout_ovf_cnt = FALSE;
+     56            }else {
+     57              timout_ovf_cnt = TRUE;
+     58            }
+     59          #endif
+     60          
+     61            TCNT2 = timout ; // Set Timer Value for a Tbit overflow
+   \   00000006   9300....           STS     _A_TCNT2, R16
+     62          
+     63          #if TIMER_2_PRESCALER == 256
+     64          #ifdef AT90CAN128_USED
+     65            TCCR2A  = (1<<CS22)  | (1<<CS21);         // Set clock source to fosc / 256
+   \   0000000A   E006               LDI     R16, 6
+   \   0000000C                      REQUIRE ?Subroutine0
+   \   0000000C                      REQUIRE _A_TIMSK2
+   \   0000000C                      REQUIRE _A_TCNT2
+   \   0000000C                      REQUIRE _A_TCCR2A
+   \   0000000C                      ;               // Fall through to label ?Subroutine0
+     66          #else
+     67            TCCR2B  = (1<<CS22)  | (1<<CS21);         // Set clock source to fosc / 256
+     68          #endif
+     69          
+     70          #elif TIMER_2_PRESCALER == 1024
+     71          #ifdef AT90CAN128_USED
+     72            TCCR2A  = (1<<CS22)  | (1<<CS21) | (1<<CS20);    // Set clock source to fosc / 1024
+     73          #else
+     74            TCCR2B  = (1<<CS22)  | (1<<CS21) | (1<<CS20);    // Set clock source to fosc / 1024
+     75          #endif
+     76          
+     77          #else
+     78          #error "timer 2 prescaler value not supported (256 / 1024 only)"
+     79          #endif
+     80          }
+
+   \                                 In  segment CODE, align 2, keep-with-next
+   \                     ?Subroutine0:
+   \   00000000   9300....           STS     _A_TCCR2A, R16
+   \   00000004   9508               RET
+     81          
+     82          
+     83          /*------------------------------------------------*/
+     84          /*  Timer Stop                                    */
+     85          /*------------------------------------------------*/
+
+   \                                 In  segment CODE, align 2, keep-with-next
+     86          void Timer2_stop(void){
+   \                     Timer2_stop:
+     87            TIMSK2  &= ~(1 << TOIE2);    // disable Int T2 Overflow Enabled
+   \   00000000   91000070           LDS     R16, 112
+   \   00000004   7F0E               ANDI    R16, 0xFE
+   \   00000006   93000070           STS     112, R16
+     88          #ifdef AT90CAN128_USED
+     89            TCCR2A  = 0x00; //stop timer clock
+   \   0000000A   E000               LDI     R16, 0
+   \   0000000C   ....               RJMP    ?Subroutine0
+   \   0000000E                      REQUIRE _A_TIMSK2
+   \   0000000E                      REQUIRE _A_TCCR2A
+     90          #else
+     91            TCCR2B  = 0x00; //stop timer clock
+     92          #endif
+     93          }
+     94          #endif
+     95          
+
+   Maximum stack usage in bytes:
+
+   RSTACK Function
+   ------ --------
+      2   Timer2_start
+      2   Timer2_stop
+
+
+   Segment part sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       6  ?Subroutine0
+      12  Timer2_start
+      14  Timer2_stop
+       1  _A_ACSR
+       2  _A_ADC
+       1  _A_ADCSRA
+       1  _A_ADCSRB
+       1  _A_ADMUX
+       1  _A_ASSR
+       1  _A_CANBT1
+       1  _A_CANBT2
+       1  _A_CANBT3
+       1  _A_CANCDMOB
+       1  _A_CANEN1
+       1  _A_CANEN2
+       1  _A_CANGCON
+       1  _A_CANGIE
+       1  _A_CANGIT
+       1  _A_CANGSTA
+       1  _A_CANHPMOB
+       1  _A_CANIDM1
+       1  _A_CANIDM2
+       1  _A_CANIDM3
+       1  _A_CANIDM4
+       1  _A_CANIDT1
+       1  _A_CANIDT2
+       1  _A_CANIDT3
+       1  _A_CANIDT4
+       1  _A_CANIE1
+       1  _A_CANIE2
+       1  _A_CANMSG
+       1  _A_CANPAGE
+       1  _A_CANREC
+       1  _A_CANSIT1
+       1  _A_CANSIT2
+       2  _A_CANSTM
+       1  _A_CANSTMOB
+       1  _A_CANTCON
+       1  _A_CANTEC
+       2  _A_CANTIM
+       2  _A_CANTTC
+       1  _A_CLKPR
+       1  _A_DDRA
+       1  _A_DDRB
+       1  _A_DDRC
+       1  _A_DDRD
+       1  _A_DDRE
+       1  _A_DDRF
+       1  _A_DDRG
+       1  _A_DIDR0
+       1  _A_DIDR1
+       2  _A_EEAR
+       1  _A_EECR
+       1  _A_EEDR
+       1  _A_EICRA
+       1  _A_EICRB
+       1  _A_EIFR
+       1  _A_EIMSK
+       1  _A_GPIOR0
+       1  _A_GPIOR1
+       1  _A_GPIOR2
+       1  _A_GTCCR
+       2  _A_ICR1
+       2  _A_ICR3
+       1  _A_MCUCR
+       1  _A_MCUSR
+       1  _A_OCDR
+       1  _A_OCR0A
+       2  _A_OCR1A
+       2  _A_OCR1B
+       2  _A_OCR1C
+       1  _A_OCR2A
+       2  _A_OCR3A
+       2  _A_OCR3B
+       2  _A_OCR3C
+       1  _A_OSCCAL
+       1  _A_PINA
+       1  _A_PINB
+       1  _A_PINC
+       1  _A_PIND
+       1  _A_PINE
+       1  _A_PINF
+       1  _A_PING
+       1  _A_PORTA
+       1  _A_PORTB
+       1  _A_PORTC
+       1  _A_PORTD
+       1  _A_PORTE
+       1  _A_PORTF
+       1  _A_PORTG
+       1  _A_RAMPZ
+       1  _A_SMCR
+       2  _A_SP
+       1  _A_SPCR
+       1  _A_SPDR
+       1  _A_SPMCSR
+       1  _A_SPSR
+       1  _A_SREG
+       1  _A_TCCR0A
+       1  _A_TCCR1A
+       1  _A_TCCR1B
+       1  _A_TCCR1C
+       1  _A_TCCR2A
+       1  _A_TCCR3A
+       1  _A_TCCR3B
+       1  _A_TCCR3C
+       1  _A_TCNT0
+       2  _A_TCNT1
+       1  _A_TCNT2
+       2  _A_TCNT3
+       1  _A_TIFR0
+       1  _A_TIFR1
+       1  _A_TIFR2
+       1  _A_TIFR3
+       1  _A_TIMSK0
+       1  _A_TIMSK1
+       1  _A_TIMSK2
+       1  _A_TIMSK3
+       1  _A_TWAR
+       1  _A_TWBR
+       1  _A_TWCR
+       1  _A_TWDR
+       1  _A_TWSR
+       2  _A_UBRR0
+       2  _A_UBRR1
+       1  _A_UCSR0A
+       1  _A_UCSR0B
+       1  _A_UCSR0C
+       1  _A_UCSR1A
+       1  _A_UCSR1B
+       1  _A_UCSR1C
+       1  _A_UDR0
+       1  _A_UDR1
+       1  _A_WDTCR
+       1  _A_XMCRA
+       1  _A_XMCRB
+
+ 
+ 151 bytes in segment ABSOLUTE
+  32 bytes in segment CODE
+ 
+ 32 bytes of CODE memory
+  0 bytes of DATA memory (+ 151 bytes shared)
+
+Errors: none
+Warnings: none
