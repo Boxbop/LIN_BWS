@@ -69,7 +69,7 @@
 #define _8MHZ_TCNT1L            0xc0
 #define _8_BIT_TIMER_PRESCALER  8
 #define _8_BIT_TIMER_SEED       152
-#elif LIN_BAUDRATE == 19200
+#elif LIN_BAUDRATE == 19200 //defined in config.h
 #define _8MHZ_TCNT1H            0xfe
 #define _8MHZ_TCNT1L            0x60
 #define _8_BIT_TIMER_PRESCALER  8
@@ -83,8 +83,8 @@
 #define NB_FRAME                 5
 #define FALSE                    0
 #define TRUE                     1
-#define REMOTE_LIN_FRAME_TYPE    1   //master transmits (Header) and waits for Slave Response)
-#define STANDART_LIN_FRAME_TYPE  0   //master transmits (Header + Response)
+#define REMOTE_LIN_FRAME_TYPE    1   //master transmits (Header send and waits for Slave Response)
+#define STANDART_LIN_FRAME_TYPE  0   //master transmits (send Header + Response)
 
 
 /* Define MASTER_LIN_H if already not defined */
@@ -149,9 +149,9 @@ void Start_Lin_Master (void);
 U8 DataReceived_Notification(U8 ReceivedId,U8 ReceivedSize);
 U8 l_sch_tick(void); //schedule manager
 U8 id_to_dlc (U8 lin_id);
-U8 ComputeIdField(U8 lin_id_wo_dlc,U8 dlc)  ;
+U8 ComputeIdField(U8 lin_id_wo_dlc,U8 dlc);
 U8 CompDataBuffer(U8 * Buffer1, U8 * Buffer2,U8 BufferSize);
-char int2hex(unsigned char integer) ;
+char int2hex(unsigned char integer);
 
 #ifdef _COUNTING_ERRORS_ENABLE
 void update_error_counter(U8 status);

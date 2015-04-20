@@ -52,7 +52,7 @@ U8 Buf_GET_SLAVE [4];
 
 /* ************************************************************************** */
 /*
-** Description :	The main C function.  Program execution starts here.
+** Description : 차량의 Back Warning System을 위한 LIN 마스터
 **
 ** ------------------------------------------------------------------------------
 */
