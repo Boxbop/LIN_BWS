@@ -59,7 +59,7 @@
 #endif
 
 
-#define Uart_hw_init(config)    (UCSRC=config)
+#define Uart_hw_init(config)    (UCSRC=config) //USART Control and Status Register C, 0x06
 #define Uart_enable()           (UCSRB |= MSK_UART_ENABLE_RX|MSK_UART_ENABLE_TX)
 #define Uart_tx_ready()         (UCSRA&MSK_UART_DRE)
 #define Uart_set_tx_busy()

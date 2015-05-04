@@ -19,6 +19,6 @@
 @REM 
 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.0\common\bin\cspybat" "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.0\avr\bin\avrproc.dll" "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.0\avr\bin\avrsim.dll"  %1 --plugin "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.0\avr\bin\avrlibsupportbat.dll" --backend -B "--cpu=can128" "--enhanced_core" "-p" "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.0\avr\Config\iocan128.ddf" "--eeprom_size" "4096" "-d" "sim" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.0\common\bin\cspybat" "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.0\avr\bin\avrproc.dll" "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.0\avr\bin\avrJtagIce.dll"  %1 --plugin "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.0\avr\bin\avrlibsupportbat.dll" --backend -B "--cpu=can128" "--enhanced_core" "-p" "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.0\avr\Config\iocan128.ddf" "--eeprom_size" "4096" "-d" "jtagIce" "--drv_communication=COM4" "--jtagice_clock=100000" "--jtagice_leave_timers_running" "--drv_set_putchar_breakpoint" "--drv_set_getchar_breakpoint" 
 
 

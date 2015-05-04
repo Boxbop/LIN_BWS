@@ -57,7 +57,7 @@
         </option>
         <option>
           <name>newDDFileOverride</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>CSVariantEepromSize</name>
@@ -73,7 +73,7 @@
         </option>
         <option>
           <name>CDynDriver</name>
-          <state>SIMAVR</state>
+          <state>JTAGICEAVR</state>
         </option>
         <option>
           <name>DebuggerUseUbrofResetVector</name>
@@ -499,7 +499,7 @@
         <option>
           <name>OJTAGICEAVRJtagIceComPort</name>
           <version>0</version>
-          <state>0</state>
+          <state>3</state>
         </option>
         <option>
           <name>OJTAGICEAVRJtagIceSuppLoad</name>

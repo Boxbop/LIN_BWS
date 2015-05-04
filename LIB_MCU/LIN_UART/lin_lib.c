@@ -95,7 +95,8 @@ U8 lin_cmd (st_cmd_lin_t* pt_cmd) {
   U8 status;
   U8 cpt, temp;
 
-  if ((pt_cmd->cmd ==LIN_CMD_S_TX) &&(pt_cmd->handle == 1)){
+  if ((pt_cmd->cmd ==LIN_CMD_S_TX) &&(pt_cmd->handle == 1))
+  {
     temp = lin_dlc_to_nb_byte(pt_cmd->pt_lin_msg->id >> 4);
     Lin_reset_index();
     for (cpt=0; cpt < temp; cpt++){
@@ -103,9 +104,13 @@ U8 lin_cmd (st_cmd_lin_t* pt_cmd) {
     }
     Lin_cmds_txdata();
     status = LIN_CMD_ACCEPTED;
-  }else if ( Lin_get_busy() ){
+  }
+  else if ( Lin_get_busy() )
+  {
     status = LIN_CMD_REFUSED;
-  } else{
+  }
+  else
+  {
     status = LIN_CMD_ACCEPTED;
     Lin_clear_status();
     Lin_clear_error_status();

@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V6.50.1.797 for Atmel AVR            06/Apr/2015  14:39:42
+# IAR C/C++ Compiler V6.50.1.797 for Atmel AVR            04/May/2015  14:10:18
 # Copyright 1996-2014 IAR Systems AB.
 # Standalone license - IAR Embedded Workbench 4K Kickstart edition for Atmel AVR 6.50
 #
@@ -816,7 +816,7 @@ C:\Users\lisa\Desktop\LIN_BWS\LIB_MCU\LIN_UART\lin_lib.c
      95            U8 status;
      96            U8 cpt, temp;
      97          
-     98            if ((pt_cmd->cmd ==LIN_CMD_S_TX) &&(pt_cmd->handle == 1)){
+     98            if ((pt_cmd->cmd ==LIN_CMD_S_TX) &&(pt_cmd->handle == 1))
    \   00000006   01F8               MOVW    R31:R30, R17:R16
    \   00000008   8101               LDD     R16, Z+1
    \   0000000A   3004               CPI     R16, 4
@@ -826,7 +826,8 @@ C:\Users\lisa\Desktop\LIN_BWS\LIB_MCU\LIN_UART\lin_lib.c
    \   00000012   3001               CPI     R16, 1
    \   00000014   F009               BREQ    $+2+2
    \   00000016   C04C               RJMP    ??lin_cmd_0
-     99              temp = lin_dlc_to_nb_byte(pt_cmd->pt_lin_msg->id >> 4);
+     99            {
+    100              temp = lin_dlc_to_nb_byte(pt_cmd->pt_lin_msg->id >> 4);
    \   00000018   9612               ADIW    R27:R26, 2
    \   0000001A   91ED               LD      R30, X+
    \   0000001C   91FC               LD      R31, X
@@ -836,13 +837,13 @@ C:\Users\lisa\Desktop\LIN_BWS\LIB_MCU\LIN_UART\lin_lib.c
    \   00000024   700F               ANDI    R16, 0x0F
    \   00000026   ....               RCALL   lin_dlc_to_nb_byte
    \   00000028   2F10               MOV     R17, R16
-    100              Lin_reset_index();
+    101              Lin_reset_index();
    \   0000002A   E000               LDI     R16, 0
    \   0000002C   9300....           STS     _lin_index, R16
-    101              for (cpt=0; cpt < temp; cpt++){
+    102              for (cpt=0; cpt < temp; cpt++){
    \   00000030   E050               LDI     R21, 0
    \   00000032   C017               RJMP    ??lin_cmd_1
-    102                Lin_set_data(*(pt_cmd->pt_lin_msg->pt_data + cpt));
+    103                Lin_set_data(*(pt_cmd->pt_lin_msg->pt_data + cpt));
    \                     ??lin_cmd_2:
    \   00000034   01FD               MOVW    R31:R30, R27:R26
    \   00000036   8122               LDD     R18, Z+2
@@ -863,12 +864,12 @@ C:\Users\lisa\Desktop\LIN_BWS\LIB_MCU\LIN_UART\lin_lib.c
    \   00000056   9120....           LDS     R18, _lin_index
    \   0000005A   9523               INC     R18
    \   0000005C   9320....           STS     _lin_index, R18
-    103              }
+    104              }
    \   00000060   9503               INC     R16
    \                     ??lin_cmd_1:
    \   00000062   1701               CP      R16, R17
    \   00000064   F338               BRCS    ??lin_cmd_2
-    104              Lin_cmds_txdata();
+    105              Lin_cmds_txdata();
    \   00000066   E205               LDI     R16, 37
    \   00000068   E010               LDI     R17, 0
    \   0000006A   ........           CALL    Uart_set_baudrate
@@ -892,27 +893,31 @@ C:\Users\lisa\Desktop\LIN_BWS\LIB_MCU\LIN_UART\lin_lib.c
    \   000000A2   9100....           LDS     R16, _lin_index
    \   000000A6   950A               DEC     R16
    \   000000A8   9300....           STS     _lin_index, R16
-    105              status = LIN_CMD_ACCEPTED;
+    106              status = LIN_CMD_ACCEPTED;
    \   000000AC   E081               LDI     R24, 1
    \   000000AE   C068               RJMP    ??lin_cmd_3
-    106            }else if ( Lin_get_busy() ){
+    107            }
+    108            else if ( Lin_get_busy() )
    \                     ??lin_cmd_0:
    \   000000B0   9100....           LDS     R16, _lin_status
    \   000000B4   FF04               SBRS    R16, 4
    \   000000B6   C002               RJMP    ??lin_cmd_4
-    107              status = LIN_CMD_REFUSED;
+    109            {
+    110              status = LIN_CMD_REFUSED;
    \   000000B8   E080               LDI     R24, 0
    \   000000BA   C062               RJMP    ??lin_cmd_3
-    108            } else{
-    109              status = LIN_CMD_ACCEPTED;
+    111            }
+    112            else
+    113            {
+    114              status = LIN_CMD_ACCEPTED;
    \                     ??lin_cmd_4:
    \   000000BC   E081               LDI     R24, 1
-    110              Lin_clear_status();
+    115              Lin_clear_status();
    \   000000BE   E000               LDI     R16, 0
    \   000000C0   9300....           STS     _lin_status, R16
-    111              Lin_clear_error_status();
+    116              Lin_clear_error_status();
    \   000000C4   9300....           STS     _lin_err, R16
-    112              switch(pt_cmd->cmd){
+    117              switch(pt_cmd->cmd){
    \   000000C8   8101               LDD     R16, Z+1
    \   000000CA   950A               DEC     R16
    \   000000CC   F061               BREQ    ??lin_cmd_5
@@ -928,11 +933,11 @@ C:\Users\lisa\Desktop\LIN_BWS\LIB_MCU\LIN_UART\lin_lib.c
    \   000000E0   F409               BRNE    $+2+2
    \   000000E2   C043               RJMP    ??lin_cmd_8
    \   000000E4   C04D               RJMP    ??lin_cmd_3
-    113              case LIN_CMD_M_TX:
-    114                pt_cmd->handle = 1;
+    118              case LIN_CMD_M_TX:
+    119                pt_cmd->handle = 1;
    \                     ??lin_cmd_5:
    \   000000E6   938C               ST      X, R24
-    115                temp = lin_dlc_to_nb_byte(pt_cmd->pt_lin_msg->id >> 4);
+    120                temp = lin_dlc_to_nb_byte(pt_cmd->pt_lin_msg->id >> 4);
    \   000000E8   8102               LDD     R16, Z+2
    \   000000EA   81F3               LDD     R31, Z+3
    \   000000EC   2FE0               MOV     R30, R16
@@ -941,13 +946,13 @@ C:\Users\lisa\Desktop\LIN_BWS\LIB_MCU\LIN_UART\lin_lib.c
    \   000000F2   700F               ANDI    R16, 0x0F
    \   000000F4   ....               RCALL   lin_dlc_to_nb_byte
    \   000000F6   2F10               MOV     R17, R16
-    116                Lin_reset_index();
+    121                Lin_reset_index();
    \   000000F8   E000               LDI     R16, 0
    \   000000FA   9300....           STS     _lin_index, R16
-    117                for (cpt=0; cpt < temp; cpt++){
+    122                for (cpt=0; cpt < temp; cpt++){
    \   000000FE   E050               LDI     R21, 0
    \   00000100   C016               RJMP    ??lin_cmd_9
-    118                  Lin_set_data(*(pt_cmd->pt_lin_msg->pt_data + cpt));
+    123                  Lin_set_data(*(pt_cmd->pt_lin_msg->pt_data + cpt));
    \                     ??lin_cmd_10:
    \   00000102   8122               LDD     R18, Z+2
    \   00000104   81F3               LDD     R31, Z+3
@@ -967,60 +972,60 @@ C:\Users\lisa\Desktop\LIN_BWS\LIB_MCU\LIN_UART\lin_lib.c
    \   00000122   9120....           LDS     R18, _lin_index
    \   00000126   9523               INC     R18
    \   00000128   9320....           STS     _lin_index, R18
-    119                }
+    124                }
    \   0000012C   9503               INC     R16
    \                     ??lin_cmd_9:
    \   0000012E   1701               CP      R16, R17
    \   00000130   01FD               MOVW    R31:R30, R27:R26
    \   00000132   F338               BRCS    ??lin_cmd_10
-    120                Lin_set_id(pt_cmd->pt_lin_msg->id);
+    125                Lin_set_id(pt_cmd->pt_lin_msg->id);
    \   00000134   8102               LDD     R16, Z+2
    \   00000136   81F3               LDD     R31, Z+3
    \   00000138   2FE0               MOV     R30, R16
    \   0000013A   8100               LD      R16, Z
    \   0000013C   9300....           STS     _lin_id, R16
-    121                Lin_cmdm_txdata();
+    126                Lin_cmdm_txdata();
    \   00000140   ........           CALL    Lin_cmdm_txdata
-    122                break;
+    127                break;
    \   00000144   C01D               RJMP    ??lin_cmd_3
-    123          
-    124              case LIN_CMD_M_RX:
-    125                pt_cmd->handle = 1;
+    128          
+    129              case LIN_CMD_M_RX:
+    130                pt_cmd->handle = 1;
    \                     ??lin_cmd_6:
    \   00000146   938C               ST      X, R24
-    126                Lin_set_id(pt_cmd->pt_lin_msg->id);
+    131                Lin_set_id(pt_cmd->pt_lin_msg->id);
    \   00000148   8102               LDD     R16, Z+2
    \   0000014A   81F3               LDD     R31, Z+3
    \   0000014C   2FE0               MOV     R30, R16
    \   0000014E   8100               LD      R16, Z
    \   00000150   9300....           STS     _lin_id, R16
-    127                Lin_cmdm_rxdata();
+    132                Lin_cmdm_rxdata();
    \   00000154   ........           CALL    Lin_cmdm_rxdata
-    128                break;
+    133                break;
    \   00000158   C013               RJMP    ??lin_cmd_3
-    129          
-    130              case LIN_CMD_S_RX:
-    131                pt_cmd->handle = 1;
+    134          
+    135              case LIN_CMD_S_RX:
+    136                pt_cmd->handle = 1;
    \                     ??lin_cmd_7:
    \   0000015A   938C               ST      X, R24
-    132                Lin_cmds_rxdata();
+    137                Lin_cmds_rxdata();
    \   0000015C   E100               LDI     R16, 16
    \   0000015E   9300....           STS     _lin_status, R16
    \   00000162   E004               LDI     R16, 4
    \   00000164   9300....           STS     _lin_cmd, R16
-    133                break;
-   \   00000168   C00B               RJMP    ??lin_cmd_3
-    134          
-    135              case LIN_CMD_WUP:
-    136                pt_cmd->handle = 1;
-    137                Lin_cmds_wkup();
     138                break;
+   \   00000168   C00B               RJMP    ??lin_cmd_3
     139          
-    140              case LIN_CMD_SLP:
+    140              case LIN_CMD_WUP:
     141                pt_cmd->handle = 1;
+    142                Lin_cmds_wkup();
+    143                break;
+    144          
+    145              case LIN_CMD_SLP:
+    146                pt_cmd->handle = 1;
    \                     ??lin_cmd_8:
    \   0000016A   938C               ST      X, R24
-    142                Lin_cmds_wkup();
+    147                Lin_cmds_wkup();
    \   0000016C   E109               LDI     R16, 25
    \   0000016E   E010               LDI     R17, 0
    \   00000170   ........           CALL    Uart_set_baudrate
@@ -1028,84 +1033,84 @@ C:\Users\lisa\Desktop\LIN_BWS\LIB_MCU\LIN_UART\lin_lib.c
    \   00000176   9300....           STS     _A_UDR1, R16
    \   0000017A   E002               LDI     R16, 2
    \   0000017C   9300....           STS     _lin_status, R16
-    143                break;
-    144          
-    145              default:
-    146                break;
-    147              }
-    148            }
-    149            return(status);
+    148                break;
+    149          
+    150              default:
+    151                break;
+    152              }
+    153            }
+    154            return(status);
    \                     ??lin_cmd_3:
    \   00000180   2F08               MOV     R16, R24
    \   00000182                      REQUIRE ?Subroutine1
    \   00000182                      REQUIRE _A_UDR1
    \   00000182                      ;               // Fall through to label ?Subroutine1
-    150          }
+    155          }
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine1:
    \   00000000   E0E4               LDI     R30, 4
    \   00000002   ........           JMP     ?EPILOGUE_B4_L09
-    151          
-    152          /**
-    153          * @fn lin_getstatus
-    154          * @brief This function returns the lin controller status.
-    155          **/
+    156          
+    157          /**
+    158          * @fn lin_getstatus
+    159          * @brief This function returns the lin controller status.
+    160          **/
 
    \                                 In  segment CODE, align 2, keep-with-next
-    156          lin_status_t lin_getstatus (st_cmd_lin_t* pt_cmd){
+    161          lin_status_t lin_getstatus (st_cmd_lin_t* pt_cmd){
    \                     lin_getstatus:
    \   00000000   ........           CALL    ?PROLOGUE4_L09
    \   00000004   01C8               MOVW    R25:R24, R17:R16
-    157            lin_status_t status;
-    158            U8 temp;
-    159            U8 cpt;
-    160          
-    161            if (0 == pt_cmd->handle){
+    162            lin_status_t status;
+    163            U8 temp;
+    164            U8 cpt;
+    165          
+    166            if (0 == pt_cmd->handle){
    \   00000006   01F8               MOVW    R31:R30, R17:R16
    \   00000008   8100               LD      R16, Z
    \   0000000A   2300               TST     R16
    \   0000000C   F409               BRNE    $+2+2
    \   0000000E   C05A               RJMP    ??lin_getstatus_0
-    162              status = LIN_AVAILABLE;
-    163            }else{
-    164              temp = Lin_get_status();
+    167              status = LIN_AVAILABLE;
+    168            }else{
+    169              temp = Lin_get_status();
    \   00000010   9100....           LDS     R16, _lin_status
    \   00000014   710F               ANDI    R16, 0x1F
-    165              if (temp == LIN_STATUS_TX){
+    170              if (temp == LIN_STATUS_TX){
    \   00000016   3002               CPI     R16, 2
    \   00000018   F429               BRNE    ??lin_getstatus_1
-    166                pt_cmd->handle = 0;
+    171                pt_cmd->handle = 0;
    \   0000001A   E000               LDI     R16, 0
    \   0000001C   8300               ST      Z, R16
-    167                Lin_clear_status();
+    172                Lin_clear_status();
    \   0000001E   9300....           STS     _lin_status, R16
-    168                status = LIN_ACTION_COMPLETED;
+    173                status = LIN_ACTION_COMPLETED;
    \   00000022   C02B               RJMP    ??lin_getstatus_2
-    169              }else if (temp == LIN_STATUS_RX){
+    174              }else if (temp == LIN_STATUS_RX){
    \                     ??lin_getstatus_1:
    \   00000024   3001               CPI     R16, 1
    \   00000026   F559               BRNE    ??lin_getstatus_3
-    170                pt_cmd->handle = 0;
+    175                pt_cmd->handle = 0;
    \   00000028   E000               LDI     R16, 0
    \   0000002A   8300               ST      Z, R16
-    171                Lin_clear_status();
+    176                Lin_clear_status();
    \   0000002C   9300....           STS     _lin_status, R16
-    172                temp = lin_dlc_to_nb_byte(pt_cmd->pt_lin_msg->id >> 4);
+    177                temp = lin_dlc_to_nb_byte(pt_cmd->pt_lin_msg->id >> 4);
    \   00000030   81A2               LDD     R26, Z+2
    \   00000032   81B3               LDD     R27, Z+3
    \   00000034   910C               LD      R16, X
    \   00000036   9502               SWAP    R16
    \   00000038   700F               ANDI    R16, 0x0F
    \   0000003A   ....               RCALL   lin_dlc_to_nb_byte
-    173                Lin_reset_index();
+    178                Lin_reset_index();
    \   0000003C   E010               LDI     R17, 0
    \   0000003E   9310....           STS     _lin_index, R17
-    174                for ( cpt=0 ; cpt<temp ; cpt++){
+    179                for ( cpt=0 ; cpt<temp ; cpt++){
    \   00000042   E040               LDI     R20, 0
    \   00000044   E050               LDI     R21, 0
    \   00000046   C017               RJMP    ??lin_getstatus_4
-    175                  *(pt_cmd->pt_lin_msg->pt_data + cpt ) = Lin_get_data();
+    180                  *(pt_cmd->pt_lin_msg->pt_data + cpt ) = Lin_get_data();
    \                     ??lin_getstatus_5:
    \   00000048   9120....           LDS     R18, _lin_index
    \   0000004C   E0F0               LDI     R31, 0
@@ -1123,165 +1128,165 @@ C:\Users\lisa\Desktop\LIN_BWS\LIB_MCU\LIN_UART\lin_lib.c
    \   00000064   1F35               ADC     R19, R21
    \   00000066   01F9               MOVW    R31:R30, R19:R18
    \   00000068   8310               ST      Z, R17
-    176                  Lin_inc_index();
+    181                  Lin_inc_index();
    \   0000006A   9110....           LDS     R17, _lin_index
    \   0000006E   9513               INC     R17
    \   00000070   9310....           STS     _lin_index, R17
-    177                }
+    182                }
    \   00000074   9543               INC     R20
    \                     ??lin_getstatus_4:
    \   00000076   1740               CP      R20, R16
    \   00000078   F338               BRCS    ??lin_getstatus_5
-    178                status = LIN_ACTION_COMPLETED;
+    183                status = LIN_ACTION_COMPLETED;
    \                     ??lin_getstatus_2:
    \   0000007A   E011               LDI     R17, 1
    \   0000007C   C024               RJMP    ??lin_getstatus_6
-    179              }else if (temp == LIN_STATUS_ID){
+    184              }else if (temp == LIN_STATUS_ID){
    \                     ??lin_getstatus_3:
    \   0000007E   3004               CPI     R16, 4
    \   00000080   F469               BRNE    ??lin_getstatus_7
-    180                pt_cmd->handle = 1;
+    185                pt_cmd->handle = 1;
    \   00000082   E001               LDI     R16, 1
    \   00000084   8300               ST      Z, R16
-    181                Lin_clear_status();
+    186                Lin_clear_status();
    \   00000086   E000               LDI     R16, 0
    \   00000088   9300....           STS     _lin_status, R16
-    182                pt_cmd->pt_lin_msg->id = Lin_get_id();
+    187                pt_cmd->pt_lin_msg->id = Lin_get_id();
    \   0000008C   9100....           LDS     R16, _lin_id
    \   00000090   730F               ANDI    R16, 0x3F
    \   00000092   81A2               LDD     R26, Z+2
    \   00000094   81B3               LDD     R27, Z+3
    \   00000096   930C               ST      X, R16
-    183                status = LIN_ID_RECEIVED;
+    188                status = LIN_ID_RECEIVED;
    \   00000098   E012               LDI     R17, 2
    \   0000009A   C015               RJMP    ??lin_getstatus_6
-    184              }else if (temp == LIN_STATUS_ERR){
+    189              }else if (temp == LIN_STATUS_ERR){
    \                     ??lin_getstatus_7:
    \   0000009C   3008               CPI     R16, 8
    \   0000009E   F451               BRNE    ??lin_getstatus_8
-    185                pt_cmd->handle = 0;
+    190                pt_cmd->handle = 0;
    \   000000A0   E000               LDI     R16, 0
    \   000000A2   8300               ST      Z, R16
-    186                Lin_clear_status();
+    191                Lin_clear_status();
    \   000000A4   9300....           STS     _lin_status, R16
-    187                status = (lin_status_t)(0xC0 + Lin_get_error());
+    192                status = (lin_status_t)(0xC0 + Lin_get_error());
    \   000000A8   9110....           LDS     R17, _lin_err
    \   000000AC   5410               SUBI    R17, 64
-    188                Lin_clear_error_status();
+    193                Lin_clear_error_status();
    \   000000AE   9300....           STS     _lin_err, R16
    \   000000B2   C009               RJMP    ??lin_getstatus_6
-    189              }else if (temp == LIN_STATUS_BUSY){
+    194              }else if (temp == LIN_STATUS_BUSY){
    \                     ??lin_getstatus_8:
    \   000000B4   3100               CPI     R16, 16
    \   000000B6   F411               BRNE    ??lin_getstatus_9
-    190                status =LIN_ACTION_ONGOING;
+    195                status =LIN_ACTION_ONGOING;
    \   000000B8   E013               LDI     R17, 3
    \   000000BA   C005               RJMP    ??lin_getstatus_6
-    191              }else{
-    192                if (_lin_state == 0) {
+    196              }else{
+    197                if (_lin_state == 0) {
    \                     ??lin_getstatus_9:
    \   000000BC   9100....           LDS     R16, _lin_state
    \   000000C0   2300               TST     R16
    \   000000C2   F409               BRNE    ??lin_getstatus_6
-    193                  status =  LIN_AVAILABLE;
+    198                  status =  LIN_AVAILABLE;
    \                     ??lin_getstatus_0:
    \   000000C4   E010               LDI     R17, 0
-    194                }
-    195              }
-    196            }
-    197            return (status);
+    199                }
+    200              }
+    201            }
+    202            return (status);
    \                     ??lin_getstatus_6:
    \   000000C6   2F01               MOV     R16, R17
    \   000000C8   ....               RJMP    ?Subroutine1
-    198          }
-    199          
-    200          /**
-    201          * @fn nb_byte_to_lin_dlc
-    202          * @brief This function converts the lin dlc into
-    203          * the associated number of bytes.
-    204          **/
+    203          }
+    204          
+    205          /**
+    206          * @fn nb_byte_to_lin_dlc
+    207          * @brief This function converts the lin dlc into
+    208          * the associated number of bytes.
+    209          **/
 
    \                                 In  segment CODE, align 2, keep-with-next
-    205          U8 lin_dlc_to_nb_byte(U8 dlc_field){
+    210          U8 lin_dlc_to_nb_byte(U8 dlc_field){
    \                     lin_dlc_to_nb_byte:
-    206            U8 nb_byte;
-    207          
-    208            if (dlc_field < 2){
+    211            U8 nb_byte;
+    212          
+    213            if (dlc_field < 2){
    \   00000000   3002               CPI     R16, 2
    \   00000002   F408               BRCC    ??lin_dlc_to_nb_byte_0
-    209              nb_byte = 2;
+    214              nb_byte = 2;
    \   00000004   ....               RJMP    ?Subroutine0
-    210            }else if (2 == dlc_field){
+    215            }else if (2 == dlc_field){
    \                     ??lin_dlc_to_nb_byte_0:
    \   00000006   F411               BRNE    ??lin_dlc_to_nb_byte_1
-    211              nb_byte = 4;
+    216              nb_byte = 4;
    \   00000008   E004               LDI     R16, 4
    \   0000000A   9508               RET
-    212            }else{
-    213              nb_byte = 8;
+    217            }else{
+    218              nb_byte = 8;
    \                     ??lin_dlc_to_nb_byte_1:
    \   0000000C   E008               LDI     R16, 8
-    214            }
-    215            return nb_byte;
+    219            }
+    220            return nb_byte;
    \   0000000E   9508               RET
-    216          }
+    221          }
 
    \                                 In  segment CODE, align 2, keep-with-next
    \                     ?Subroutine0:
    \   00000000   E002               LDI     R16, 2
    \   00000002   9508               RET
-    217          
-    218          /**
-    219          * @fn lin_dlc_to_nb_byte
-    220          * @brief This function gives the number of byte .
-    221          **/
+    222          
+    223          /**
+    224          * @fn lin_dlc_to_nb_byte
+    225          * @brief This function gives the number of byte .
+    226          **/
 
    \                                 In  segment CODE, align 2, keep-with-next
-    222          U8 nb_byte_to_lin_dlc(U8 nb_byte){
+    227          U8 nb_byte_to_lin_dlc(U8 nb_byte){
    \                     nb_byte_to_lin_dlc:
-    223            U8 lin_dlc;
-    224          
-    225            if (nb_byte <= 2){
+    228            U8 lin_dlc;
+    229          
+    230            if (nb_byte <= 2){
    \   00000000   3003               CPI     R16, 3
    \   00000002   F410               BRCC    ??nb_byte_to_lin_dlc_0
-    226              lin_dlc = 0;
+    231              lin_dlc = 0;
    \   00000004   E000               LDI     R16, 0
    \   00000006   9508               RET
-    227            }else if (nb_byte <= 4){
+    232            }else if (nb_byte <= 4){
    \                     ??nb_byte_to_lin_dlc_0:
    \   00000008   3005               CPI     R16, 5
    \   0000000A   F408               BRCC    ??nb_byte_to_lin_dlc_1
-    228              lin_dlc = 2;
+    233              lin_dlc = 2;
    \   0000000C   ....               RJMP    ?Subroutine0
-    229            }else{
-    230              lin_dlc = 3;
+    234            }else{
+    235              lin_dlc = 3;
    \                     ??nb_byte_to_lin_dlc_1:
    \   0000000E   E003               LDI     R16, 3
-    231            }
-    232            return lin_dlc;
+    236            }
+    237            return lin_dlc;
    \   00000010   9508               RET
-    233          }
-    234          
-    235          /**
-    236          * @fn _lin_calcchecksum
-    237          * @brief Calculates the checksum based on LinData buffer content.
-    238          *
-    239          **/
+    238          }
+    239          
+    240          /**
+    241          * @fn _lin_calcchecksum
+    242          * @brief Calculates the checksum based on LinData buffer content.
+    243          *
+    244          **/
 
    \                                 In  segment CODE, align 2, keep-with-next
-    240          U8 LIN_CalcChecksum (void){
+    245          U8 LIN_CalcChecksum (void){
    \                     LIN_CalcChecksum:
-    241            U16   uiResult = 0x0000;
+    246            U16   uiResult = 0x0000;
    \   00000000   E000               LDI     R16, 0
    \   00000002   E010               LDI     R17, 0
-    242            U8    index;
-    243          
-    244            // Add with carry for all LIN Data Bytes
-    245            for(index = 0; index < _lin_index; index++) {
+    247            U8    index;
+    248          
+    249            // Add with carry for all LIN Data Bytes
+    250            for(index = 0; index < _lin_index; index++) {
    \   00000004   E040               LDI     R20, 0
    \   00000006   E030               LDI     R19, 0
    \   00000008   C00A               RJMP    ??LIN_CalcChecksum_0
-    246              uiResult += _lin_tab_data[index];     // Sum
+    251              uiResult += _lin_tab_data[index];     // Sum
    \                     ??LIN_CalcChecksum_1:
    \   0000000A   E0F0               LDI     R31, 0
    \   0000000C   2FE4               MOV     R30, R20
@@ -1290,46 +1295,46 @@ C:\Users\lisa\Desktop\LIN_BWS\LIB_MCU\LIN_UART\lin_lib.c
    \   00000012   8120               LD      R18, Z
    \   00000014   0F02               ADD     R16, R18
    \   00000016   1F13               ADC     R17, R19
-    247              uiResult += ((uiResult & 0x100) >> 8);// Add Carry
-    248              uiResult &= 0x00FF;                   // Clear Carry Bit
+    252              uiResult += ((uiResult & 0x100) >> 8);// Add Carry
+    253              uiResult &= 0x00FF;                   // Clear Carry Bit
    \   00000018   0F01               ADD     R16, R17
    \   0000001A   E010               LDI     R17, 0
-    249            }
+    254            }
    \   0000001C   9543               INC     R20
    \                     ??LIN_CalcChecksum_0:
    \   0000001E   9120....           LDS     R18, _lin_index
    \   00000022   1742               CP      R20, R18
    \   00000024   F390               BRCS    ??LIN_CalcChecksum_1
-    250            return (unsigned char)(~(uiResult & 0x00ff));  // Checksum is inverted sum
+    255            return (unsigned char)(~(uiResult & 0x00ff));  // Checksum is inverted sum
    \   00000026   9500               COM     R16
    \   00000028   9508               RET
-    251          }
-    252          
-    253          /**
-    254          * @fn lin_initidfiel
-    255          * @brief add parity bits to the LIN Identifier.
-    256          **/
+    256          }
+    257          
+    258          /**
+    259          * @fn lin_initidfiel
+    260          * @brief add parity bits to the LIN Identifier.
+    261          **/
 
    \                                 In  segment CODE, align 2, keep-with-next
-    257          U8 LIN_InitIdField(U8 lin_id ){
+    262          U8 LIN_InitIdField(U8 lin_id ){
    \                     LIN_InitIdField:
-    258            U8 	LINParity0;
-    259            U8 	LINParity1;
-    260            U8    LinIdField;
-    261          
-    262            LinIdField = lin_id & 0x3F; //clear parity bits if set
+    263            U8 	LINParity0;
+    264            U8 	LINParity1;
+    265            U8    LinIdField;
+    266          
+    267            LinIdField = lin_id & 0x3F; //clear parity bits if set
    \   00000000   730F               ANDI    R16, 0x3F
-    263          
-    264            // Calculate Parity
-    265            LINParity0 = (
-    266                          (LinIdField & 0x01)
-    267                            ^
-    268                              ((LinIdField & 0x02) >> 1)
-    269                                ^
-    270                                  ((LinIdField & 0x04) >> 2 )
-    271                                    ^
-    272                                      ((LinIdField & 0x10) >> 4)
-    273                                        );
+    268          
+    269            // Calculate Parity
+    270            LINParity0 = (
+    271                          (LinIdField & 0x01)
+    272                            ^
+    273                              ((LinIdField & 0x02) >> 1)
+    274                                ^
+    275                                  ((LinIdField & 0x04) >> 2 )
+    276                                    ^
+    277                                      ((LinIdField & 0x10) >> 4)
+    278                                        );
    \   00000002   2F30               MOV     R19, R16
    \   00000004   7031               ANDI    R19, 0x01
    \   00000006   FB01               BST     R16, 1
@@ -1345,17 +1350,17 @@ C:\Users\lisa\Desktop\LIN_BWS\LIB_MCU\LIN_UART\lin_lib.c
    \   0000001A   F910               BLD     R17, 0
    \   0000001C   2731               EOR     R19, R17
    \   0000001E   7031               ANDI    R19, 0x01
-    274          
-    275            LINParity1 = ( !(
-    276                             ((LinIdField & 0x02) >> 1)
-    277                               ^
-    278                                 ((LinIdField & 0x08) >> 3)
-    279                                   ^
-    280                                     ((LinIdField & 0x10) >> 4)
-    281                                       ^
-    282                                         ((LinIdField & 0x20) >> 5)
-    283                                           )
-    284                          );
+    279          
+    280            LINParity1 = ( !(
+    281                             ((LinIdField & 0x02) >> 1)
+    282                               ^
+    283                                 ((LinIdField & 0x08) >> 3)
+    284                                   ^
+    285                                     ((LinIdField & 0x10) >> 4)
+    286                                       ^
+    287                                         ((LinIdField & 0x20) >> 5)
+    288                                           )
+    289                          );
    \   00000020   2F20               MOV     R18, R16
    \   00000022   9525               ASR     R18
    \   00000024   2F10               MOV     R17, R16
@@ -1382,16 +1387,16 @@ C:\Users\lisa\Desktop\LIN_BWS\LIB_MCU\LIN_UART\lin_lib.c
    \   0000004E   6800               ORI     R16, 0x80
    \                     ??LIN_InitIdField_0:
    \   00000050   2F10               MOV     R17, R16
-    285          
-    286          
-    287            LinIdField |=  ((LINParity1 & 0x01) << 7)|((LINParity0 & 0x01) << 6);  // Add parity to LIN ID Field
-    288            return LinIdField;
+    290          
+    291          
+    292            LinIdField |=  ((LINParity1 & 0x01) << 7)|((LINParity0 & 0x01) << 6);  // Add parity to LIN ID Field
+    293            return LinIdField;
    \   00000052   E400               LDI     R16, 64
    \   00000054   9F30               MUL     R19, R16
    \   00000056   2910               OR      R17, R0
    \   00000058   2F01               MOV     R16, R17
    \   0000005A   9508               RET
-    289          }
+    294          }
 
    Maximum stack usage in bytes:
 

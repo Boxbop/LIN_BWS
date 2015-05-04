@@ -14,7 +14,7 @@
           
           
           
-        <Column0>319</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+        <Column0>260</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
       </Workspace>
       <Build>
         
@@ -22,11 +22,11 @@
         
         
       <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>724</ColumnWidth1><ColumnWidth2>193</ColumnWidth2><ColumnWidth3>48</ColumnWidth3></Build>
-    </Static>
+    <Debug-Log><PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>Build</Factory></Window></Windows></PreferedWindows><ColumnWidth0>20</ColumnWidth0><ColumnWidth1>1271</ColumnWidth1></Debug-Log><DRIVER_CUSTOM_SFR><PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows><col-names><item>Access</item><item>Address</item><item>Name</item><item>Size</item><item>Zone</item><item>_I0</item></col-names><col-widths><item>120</item><item>150</item><item>150</item><item>50</item><item>120</item><item>20</item></col-widths></DRIVER_CUSTOM_SFR><TerminalIO/><Select-Ambiguous-Definitions><ColumnWidth0>718</ColumnWidth0><ColumnWidth1>102</ColumnWidth1><ColumnWidth2>1231</ColumnWidth2></Select-Ambiguous-Definitions><Find-All-References><ColumnWidth0>635</ColumnWidth0><ColumnWidth1>90</ColumnWidth1><ColumnWidth2>1089</ColumnWidth2></Find-All-References><PROJECT_GUI_CALL_GRAPH><PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows><col-names><item>File</item><item>Function</item><item>Line</item></col-names><col-widths><item>200</item><item>700</item><item>100</item></col-widths></PROJECT_GUI_CALL_GRAPH></Static>
     <Windows>
       
       
-    <Wnd0>
+    <Wnd2>
         <Tabs>
           <Tab>
             <Identity>TabID-19318-24319</Identity>
@@ -38,7 +38,7 @@
           </Tab>
         </Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd0><Wnd1>
+      <SelectedTab>0</SelectedTab></Wnd2><Wnd3>
         <Tabs>
           <Tab>
             <Identity>TabID-18754-25762</Identity>
@@ -46,22 +46,22 @@
             <Factory>Build</Factory>
             <Session/>
           </Tab>
-        </Tabs>
+        <Tab><Identity>TabID-11809-16096</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab><Tab><Identity>TabID-4393-27204</Identity><TabName>Ambiguous Definitions</TabName><Factory>Select-Ambiguous-Definitions</Factory><Session/></Tab><Tab><Identity>TabID-484-8223</Identity><TabName>References</TabName><Factory>Find-All-References</Factory><Session/></Tab></Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd1></Windows>
+      <SelectedTab>0</SelectedTab></Wnd3></Windows>
     <Editor>
       
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\LIN_MASTER_EXAMPLE\lin_master_example_main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>18</YPos2><SelStart2>1498</SelStart2><SelEnd2>1498</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\LIN_MASTER_EXAMPLE\config.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>23</YPos2><SelStart2>1603</SelStart2><SelEnd2>1603</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\LIB_MCU\LIN_UART\master_lin.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>98</YPos2><SelStart2>4225</SelStart2><SelEnd2>4225</SelEnd2></Tab><ActiveTab>2</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\LIN_MASTER_EXAMPLE\timer1ovf_isr.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>23</YPos2><SelStart2>2206</SelStart2><SelEnd2>2216</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\LIB_MCU\LIN_UART\master_lin.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>198</YPos2><SelStart2>9232</SelStart2><SelEnd2>9239</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\LIB_MCU\LIN_UART\lin_lib.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>103</YPos2><SelStart2>3509</SelStart2><SelEnd2>3524</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\LIB_MCU\LIN_UART\lin_drv_usart.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>449</YPos2><SelStart2>13582</SelStart2><SelEnd2>13582</SelEnd2></Tab><ActiveTab>3</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\LIB_MCU\TIMER\timer2_lib.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>42</YPos2><SelStart2>1449</SelStart2><SelEnd2>1449</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\LIB_MCU\LIN_UART\master_lin.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>59</YPos2><SelStart2>2578</SelStart2><SelEnd2>2578</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\LIB_BOARD\board_example_AT90CAN128.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>75</YPos2><SelStart2>4844</SelStart2><SelEnd2>4844</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\LIB_MCU\UART\uart_drv.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>14</YPos2><SelStart2>2165</SelStart2><SelEnd2>2165</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\LIN_MASTER_EXAMPLE\lin_master_example_main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>36</YPos2><SelStart2>2647</SelStart2><SelEnd2>2647</SelEnd2></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-011103A8><key>iaridepm.enu1</key></Toolbar-011103A8></Sizes></Row0></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>1062</Bottom><Right>393</Right><x>-2</x><y>-2</y><xscreen>259</xscreen><yscreen>234</yscreen><sizeHorzCX>204905</sizeHorzCX><sizeHorzCY>174367</sizeHorzCY><sizeVertCX>312500</sizeVertCX><sizeVertCY>792846</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>235</Bottom><Right>1266</Right><x>-2</x><y>-2</y><xscreen>1268</xscreen><yscreen>237</yscreen><sizeHorzCX>1003165</sizeHorzCX><sizeHorzCY>176602</sizeHorzCY><sizeVertCX>207278</sizeVertCX><sizeVertCY>176602</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-027322D8><key>iaridepm.enu1</key></Toolbar-027322D8></Sizes></Row0><Row1><Sizes/></Row1><Row2><Sizes/></Row2></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>1067</Bottom><Right>334</Right><x>-2</x><y>-2</y><xscreen>351</xscreen><yscreen>245</yscreen><sizeHorzCX>137109</sizeHorzCX><sizeHorzCY>180412</sizeHorzCY><sizeVertCX>131250</sizeVertCX><sizeVertCY>787187</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>246</Bottom><Right>2562</Right><x>-2</x><y>-2</y><xscreen>2564</xscreen><yscreen>248</yscreen><sizeHorzCX>1001562</sizeHorzCX><sizeHorzCY>182622</sizeHorzCY><sizeVertCX>138672</sizeVertCX><sizeVertCY>182622</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Workspace>
 

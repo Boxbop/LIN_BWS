@@ -2,14 +2,15 @@
 #                                                                              #
 #      IAR Universal Linker V6.1.3.56                                          #
 #                                                                              #
-#           Link time     =  06/Apr/2015  14:39:45                             #
+#           Link time     =  04/May/2015  14:47:30                             #
 #           Target CPU    =  A90                                               #
 #           List file     =  C:\Users\lisa\Desktop\LIN_BWS\LIN_MASTER_EXAMPLE\ #
 #                            Debug\List\Lin_Master_Example.map                 #
 #           Output file 1 =  C:\Users\lisa\Desktop\LIN_BWS\LIN_MASTER_EXAMPLE\ #
 #                            Debug\Exe\Lin_Master_Example.dbg                  #
-#                            Format: ubrof8                                    #
-#                            UBROF version 8.0.2                               #
+#                            Format: debug                                     #
+#                            UBROF version 10.0.6                              #
+#                            Using library modules for C-SPY (-rt)             #
 #           Command line  =  C:\Users\lisa\Desktop\LIN_BWS\LIN_MASTER_EXAMPLE\ #
 #                            Debug\Obj\lin_drv_usart.r90                       #
 #                            C:\Users\lisa\Desktop\LIN_BWS\LIN_MASTER_EXAMPLE\ #
@@ -27,7 +28,7 @@
 #                            -o                                                #
 #                            C:\Users\lisa\Desktop\LIN_BWS\LIN_MASTER_EXAMPLE\ #
 #                            Debug\Exe\Lin_Master_Example.dbg                  #
-#                            -Fubrof8 -z -l                                    #
+#                            -z -l                                             #
 #                            C:\Users\lisa\Desktop\LIN_BWS\LIN_MASTER_EXAMPLE\ #
 #                            Debug\List\Lin_Master_Example.map                 #
 #                            -xms                                              #
@@ -81,7 +82,7 @@
 #                            M_END                                             #
 #                            -Z(DATA)NEAR_N=_..X_EXT_EEPROM_BASE-_..X_EXT_EEPR #
 #                            OM_END                                            #
-#                            -w29) -we001=i -s __program_start                 #
+#                            -w29) -we001=i -rt -s __program_start             #
 #                            "C:\Program Files (x86)\IAR Systems\Embedded Work #
 #                            bench 7.0\avr\LIB\CLIB\cl3s-ec_mul.r90"           #
 #                                                                              #

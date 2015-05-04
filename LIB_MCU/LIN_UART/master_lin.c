@@ -232,7 +232,7 @@ void Start_Lin_Master (void){
       if(0) {
 #endif
 
-      }else if ( pt_schedule->frame_message[Frame_index].frame_type == STANDART_LIN_FRAME_TYPE ) {
+      }else if ( pt_schedule->frame_message[Frame_index].frame_type == STANDART_LIN_FRAME_TYPE ) { //send Header + Response
         DataRequest_Notification(pt_schedule->frame_message[Frame_index].frame_id,pt_schedule->frame_message[Frame_index].frame_size);
         msg_lin.id = ComputeIdField(pt_schedule->frame_message[Frame_index].frame_id,pt_schedule->frame_message[Frame_index].frame_size);
         cmd_lin.cmd = LIN_CMD_M_TX;    // Sent a new LIN Frame
@@ -240,7 +240,7 @@ void Start_Lin_Master (void){
         msg_lin.pt_data = &tab_data[0];
         LinTxCtr = pt_schedule->frame_message[Frame_index].frame_delay;
         lin_cmd(&cmd_lin);
-      } else if ( pt_schedule->frame_message[Frame_index].frame_type == REMOTE_LIN_FRAME_TYPE ) { //response in frame
+      } else if ( pt_schedule->frame_message[Frame_index].frame_type == REMOTE_LIN_FRAME_TYPE ) { //Header send and waits for Slave Response
         msg_lin.id = ComputeIdField(pt_schedule->frame_message[Frame_index].frame_id,pt_schedule->frame_message[Frame_index].frame_size);
         cmd_lin.cmd = LIN_CMD_M_RX;    // Send a new LIN Frame
         cmd_lin.pt_lin_msg = &msg_lin;
@@ -256,21 +256,35 @@ void Start_Lin_Master (void){
   // Input Parameters:  none (use my_schedule stucture)
   // Output  Parameters:  '1' if a frame has been transmitted, '0' otherwise
   // ------------------------------------------------------------------------------
-  U8 l_sch_tick (void) {
-    if(LinTxCtr > 0) {//decrease here the schedule transmission counter
+  U8 l_sch_tick (void) { //상태를 확인하고 LIN Bus 사용 가능시에 Start_Lin_Master 실행
+    if(LinTxCtr > 0)
+    {//decrease here the schedule transmission counter
       LinTxCtr--;
     }
     lin_status = lin_getstatus(&cmd_lin);
-    if (lin_status == LIN_ACTION_ONGOING){
+    
+    /*
+    1.LIN_ACTION_ONGOING
+    2.LIN_ACTION_COMPLETED
+    3.LIN_AVAILABLE
+    */
+    if (lin_status == LIN_ACTION_ONGOING)
+    {
       //do nothing
-    }else if ((LIN_ACTION_COMPLETED == lin_status) ) {
-      if (LIN_CMD_M_RX == cmd_lin.cmd) {
+    }
+    else if ((LIN_ACTION_COMPLETED == lin_status) )
+    {
+      if (LIN_CMD_M_RX == cmd_lin.cmd)
+      {
         DataReceived_Notification((msg_lin.id & 0x0F) ,id_to_dlc (msg_lin.id));
         Lin_clear_status();
-      } else {
+      }
+      else
+      {
 #ifdef _SLEEP_TIMOUT_DETECTION
         //check if sleep command has been sent
-        if(lin_sleep_message_request) {
+        if(lin_sleep_message_request)
+        {
           lin_sleep_message_request = 0;
           lin_master_in_sleep_mode = 1;
           //lin sleep message has been successfully sent
@@ -279,9 +293,13 @@ void Start_Lin_Master (void){
         }
 #endif
       }
-    } else if ((LIN_AVAILABLE == lin_status) && (LinTxCtr == 0) )  {
+    }
+    else if ((LIN_AVAILABLE == lin_status) && (LinTxCtr == 0) )
+    {
       Start_Lin_Master() ;
-    } else {//error occured ?
+    }
+    else
+    {//error occured ?
 #ifdef CAN_LIN_GATEWAY_ENABLE
       if(lin_status & 0x80)
         SendCanErrorFrame = 1; //send a can error frame

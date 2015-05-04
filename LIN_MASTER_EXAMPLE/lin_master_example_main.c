@@ -76,7 +76,7 @@ void main (void) {
   MESS_GET_SLAVE.frame_size = 4;
   MESS_GET_SLAVE.frame_type = 1;
   MESS_GET_SLAVE.frame_data = Buf_GET_SLAVE;
-  MESS_GET_SLAVE.frame_delay  = 500 ;
+  MESS_GET_SLAVE.frame_delay  = 500;
 
 
   number_of_frame = 2;
@@ -84,7 +84,7 @@ void main (void) {
   my_schedule.frame_message[1] = MESS_GET_SLAVE;
   my_schedule.number_of_frame = number_of_frame;
 
-  CONFIG_IO_PORTS();
+  CONFIG_IO_PORTS(); //√ ±‚ PIN Setting
 
   // Initialise LIN Controller
   lin_init();// Performs Initialisation of LIN Software Driver
@@ -99,8 +99,13 @@ void main (void) {
       Buf_SET_SLAVE[0] = 0x00;
     }
 
+    if(Buf_GET_SLAVE[0] == 0x00) SET_GREEN_LED();
+    else RESET_GREEN_LED();
+    
+    /*
     if(Buf_GET_SLAVE[0] == 0x00) RESET_GREEN_LED();
     else SET_GREEN_LED();
+    */
 
   }//while(1)
 }//main
