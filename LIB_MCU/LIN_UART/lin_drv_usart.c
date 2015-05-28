@@ -69,7 +69,7 @@ extern  volatile U8 osccal_start;
 
 
 #ifdef AT90CAN128_USED
-#ifdef USE_UART2
+#ifdef USE_UART2 // Use UART2
 #pragma vector=USART0_RX_vect
 __interrupt void _lin_it_uart_rx_not_used (void){
   ;
@@ -474,7 +474,7 @@ void Lin_cmdm_txdata(void){
   Timer2_start(TIMEOUT_M_HEADER,0);
 #endif
   Uart_set_baudrate(UART_BAUDRATE_SYNC_MASTER);
-  Uart_send_byte(0x55);//send SynchBreak
+  Uart_send_byte(0);//send SynchBreak
   _lin_status = MSK_STATUS_BSY;
   _lin_cmd =LIN_CF_M_TX;
 }

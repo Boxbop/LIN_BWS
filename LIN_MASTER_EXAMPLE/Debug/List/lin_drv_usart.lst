@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR C/C++ Compiler V6.50.1.797 for Atmel AVR            04/May/2015  14:47:30
+# IAR C/C++ Compiler V6.50.1.797 for Atmel AVR            07/May/2015  12:33:41
 # Copyright 1996-2014 IAR Systems AB.
 # Standalone license - IAR Embedded Workbench 4K Kickstart edition for Atmel AVR 6.50
 #
@@ -819,7 +819,7 @@ C:\Users\lisa\Desktop\LIN_BWS\LIB_MCU\LIN_UART\lin_drv_usart.c
      69          
      70          
      71          #ifdef AT90CAN128_USED
-     72          #ifdef USE_UART2
+     72          #ifdef USE_UART2 // Use UART2
      73          #pragma vector=USART0_RX_vect
 
    \                                 In  segment CODE, align 2, keep-with-next
@@ -1607,8 +1607,8 @@ C:\Users\lisa\Desktop\LIN_BWS\LIB_MCU\LIN_UART\lin_drv_usart.c
    \   0000000A   E205               LDI     R16, 37
    \   0000000C   E010               LDI     R17, 0
    \   0000000E   ....               RCALL   Uart_set_baudrate
-    477            Uart_send_byte(0x55);//send SynchBreak
-   \   00000010   E505               LDI     R16, 85
+    477            Uart_send_byte(0);//send SynchBreak
+   \   00000010   E000               LDI     R16, 0
    \   00000012   9300....           STS     _A_UDR1, R16
     478            _lin_status = MSK_STATUS_BSY;
    \   00000016   E100               LDI     R16, 16
